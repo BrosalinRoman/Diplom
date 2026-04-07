@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.infrastructure\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|solutionrelative:investmentcontrol.infrastructure\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,7 +17,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 66,
+          "DockedWidth": 147,
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -27,34 +27,34 @@
           ]
         },
         {
-          "DockedWidth": 214,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 134,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Program.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.API\\Program.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Program.cs",
-              "RelativeToolTip": "InvestmentControl.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAsAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AnalyticsController.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Controllers\\AnalyticsController.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.API\\Controllers\\AnalyticsController.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Controllers\\AnalyticsController.cs",
+              "RelativeToolTip": "InvestmentControl.API\\Controllers\\AnalyticsController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-01T18:45:51.748Z",
-              "IsPinned": true,
+              "WhenOpened": "2026-04-07T21:54:29.939Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ExceptionHandlingMiddleware.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "RelativeToolTip": "InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Infrastructure\\Repositories\\GenericRepository.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\GenericRepository.cs",
+              "RelativeToolTip": "InvestmentControl.Infrastructure\\Repositories\\GenericRepository.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAIAwwC4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-03T15:36:25.508Z"
+              "WhenOpened": "2026-04-07T22:03:18.254Z",
+              "EditorCaption": ""
             }
           ]
         }

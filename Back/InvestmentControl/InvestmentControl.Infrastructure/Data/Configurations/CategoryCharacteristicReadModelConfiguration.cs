@@ -13,5 +13,18 @@ public class CategoryCharacteristicReadModelConfiguration : IEntityTypeConfigura
         builder.Property(cc => cc.Id).HasColumnName("id");
         builder.Property(cc => cc.CategoryId).HasColumnName("category_id");
         builder.Property(cc => cc.CharacteristicId).HasColumnName("characteristic_id");
+
+        // Внешние ключи
+        builder.HasOne(cc => cc.Category)
+               .WithMany()
+               .HasForeignKey(cc => cc.CategoryId)
+               .OnDelete(DeleteBehavior.Restrict)
+               .HasConstraintName("fk_category_characteristics_category_id");
+
+        builder.HasOne(cc => cc.Characteristic)
+               .WithMany()
+               .HasForeignKey(cc => cc.CharacteristicId)
+               .OnDelete(DeleteBehavior.Restrict)
+               .HasConstraintName("fk_category_characteristics_characteristic_id");
     }
 }

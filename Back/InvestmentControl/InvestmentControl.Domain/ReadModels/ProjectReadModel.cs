@@ -16,6 +16,12 @@ public class ProjectReadModel
     public DateTime CreatedAt { get; set; }
     public DateTime? PublishedAt { get; set; }
 
-    // Словарь для хранения характеристик (ключ - имя характеристики, значение - числовое значение)
+    // Словарь для характеристик (вычисляемое, не в БД)
     public Dictionary<string, decimal?> Characteristics { get; set; } = new();
+
+    // Навигационные свойства (для Include)
+    public CategoryReadModel? Category { get; set; }
+    public DirectionReadModel? Direction { get; set; }
+    public DepartmentReadModel? Department { get; set; }
+    public StatusReadModel? Status { get; set; }
 }

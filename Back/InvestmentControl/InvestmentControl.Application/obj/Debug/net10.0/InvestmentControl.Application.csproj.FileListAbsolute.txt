@@ -13,3 +13,4 @@ D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\D
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\refint\InvestmentControl.Application.dll
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\InvestmentControl.Application.pdb
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\ref\InvestmentControl.Application.dll
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\InvestmentControl.Application.sourcelink.json

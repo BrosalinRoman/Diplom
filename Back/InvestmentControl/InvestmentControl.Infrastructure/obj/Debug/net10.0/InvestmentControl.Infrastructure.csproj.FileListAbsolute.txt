@@ -17,3 +17,4 @@ D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Infrastructure\ob
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Infrastructure\obj\Debug\net10.0\InvestmentControl.Infrastructure.pdb
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Infrastructure\obj\Debug\net10.0\InvestmentControl.Infrastructure.genruntimeconfig.cache
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Infrastructure\obj\Debug\net10.0\ref\InvestmentControl.Infrastructure.dll
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Infrastructure\obj\Debug\net10.0\InvestmentControl.Infrastructure.sourcelink.json

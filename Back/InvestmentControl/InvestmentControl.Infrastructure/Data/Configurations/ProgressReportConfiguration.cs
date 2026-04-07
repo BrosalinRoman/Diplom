@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+namespace InvestmentControl.Infrastructure.Data.Configurations;
+
 public class ProgressReportConfiguration : IEntityTypeConfiguration<ProgressReportEntity>
 {
     public void Configure(EntityTypeBuilder<ProgressReportEntity> builder)
@@ -14,6 +16,7 @@ public class ProgressReportConfiguration : IEntityTypeConfiguration<ProgressRepo
         builder.Property(pr => pr.ProgressPercentage).HasColumnName("progress_percentage").HasColumnType("numeric");
         builder.Property(pr => pr.ReportDate).HasColumnName("report_date").HasDefaultValueSql("CURRENT_TIMESTAMP");
         builder.Property(pr => pr.UpdatedAt).HasColumnName("updated_at");
-        builder.HasIndex(pr => pr.ProjectId);
+        
+        builder.HasIndex(pr => pr.ProjectId).HasDatabaseName("ix_progress_reports_project_id");
     }
 }

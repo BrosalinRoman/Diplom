@@ -126,7 +126,7 @@ public class ProjectReadRepository : IProjectReadRepository
             .ToDictionaryAsync(d => d.Id, d => d.Name, cancellationToken);
 
         // Определяем бюджет: либо из поля Budget, либо из характеристики
-        Dictionary<int, decimal> budgets = new();
+        Dictionary<int, decimal?> budgets = new(); // ← изменён тип
         if (budgetFieldId.HasValue)
         {
             var budgetChar = await _readOnlyContext.Characteristics
@@ -150,7 +150,7 @@ public class ProjectReadRepository : IProjectReadRepository
                 DepartmentId = g.Key,
                 DepartmentName = departmentNames.GetValueOrDefault(g.Key, "Неизвестно"),
                 ProjectCount = g.Count(),
-                TotalBudget = g.Sum(p => budgets.TryGetValue(p.Id, out var b) ? b : (p.Budget ?? 0))
+                TotalBudget = g.Sum(p => budgets.TryGetValue(p.Id, out var b) ? (b ?? 0) : (p.Budget ?? 0)) // ← b ?? 0
             })
             .OrderBy(d => d.DepartmentName)
             .ToList();

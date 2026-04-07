@@ -134,7 +134,6 @@ D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\staticwebassets.development.json
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\swae.build.ex.cache
-D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\Investme.B394A7A4.Up2Date
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\InvestmentControl.API.dll
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\refint\InvestmentControl.API.dll
@@ -142,3 +141,5 @@ D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\InvestmentControl.API.genruntimeconfig.cache
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\ref\InvestmentControl.API.dll
 D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\InvestmentControl.API.MvcApplicationPartsAssemblyInfo.cs
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\InvestmentControl.API.sourcelink.json
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

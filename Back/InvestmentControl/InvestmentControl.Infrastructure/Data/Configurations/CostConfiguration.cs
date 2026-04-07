@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+namespace InvestmentControl.Infrastructure.Data.Configurations;
+
 public class CostConfiguration : IEntityTypeConfiguration<CostEntity>
 {
     public void Configure(EntityTypeBuilder<CostEntity> builder)
@@ -15,6 +17,11 @@ public class CostConfiguration : IEntityTypeConfiguration<CostEntity>
         builder.Property(c => c.Responsible).HasColumnName("responsible");
         builder.Property(c => c.Date).HasColumnName("date");
         builder.Property(c => c.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("CURRENT_TIMESTAMP");
-        builder.HasIndex(c => c.ProjectId);
+
+        builder.HasIndex(c => c.ProjectId).HasDatabaseName("ix_costs_project_id");
+
+        // Внешний ключ – но так как ProjectEntity нет в этом контексте, только если добавить DbSet<ProjectEntity>
+        // Поэтому комментируем. В БД он есть, но EF не проверяет.
+        // builder.HasOne<ProjectEntity>().WithMany().HasForeignKey(c => c.ProjectId).OnDelete(DeleteBehavior.Restrict);
     }
 }

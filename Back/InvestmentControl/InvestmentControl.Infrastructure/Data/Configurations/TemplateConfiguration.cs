@@ -2,11 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+namespace InvestmentControl.Infrastructure.Data.Configurations;
+
 public class TemplateConfiguration : IEntityTypeConfiguration<TemplateEntity>
 {
     public void Configure(EntityTypeBuilder<TemplateEntity> builder)
     {
-        builder.ToTable("templates", "analytics_service");
+        builder.ToTable("templates");
         builder.HasKey(t => t.Id);
         builder.Property(t => t.Id).HasColumnName("id");
         builder.Property(t => t.Name).HasColumnName("name").IsRequired();
@@ -14,6 +16,7 @@ public class TemplateConfiguration : IEntityTypeConfiguration<TemplateEntity>
         builder.Property(t => t.FiltersJson).HasColumnName("filters").HasColumnType("jsonb").IsRequired();
         builder.Property(t => t.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("CURRENT_TIMESTAMP");
         builder.Property(t => t.UpdatedAt).HasColumnName("updated_at");
-        builder.HasIndex(t => t.UserId);
+
+        builder.HasIndex(t => t.UserId).HasDatabaseName("ix_templates_user_id");
     }
 }
