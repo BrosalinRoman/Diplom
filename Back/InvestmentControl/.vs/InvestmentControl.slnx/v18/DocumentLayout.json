@@ -1,0 +1,64 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 66,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 214,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Program.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.API\\Program.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Program.cs",
+              "RelativeToolTip": "InvestmentControl.API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-01T18:45:51.748Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExceptionHandlingMiddleware.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "RelativeToolTip": "InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T15:36:25.508Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

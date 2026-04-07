@@ -1,0 +1,1267 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "InvestmentControl API",
+    "description": "API для управления инвестиционными проектами",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Analytics/projects": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "CategoryId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "DirectionIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "DepartmentIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "StatusIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "RankMin",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "RankMax",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "ProjectIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "SelectedFields",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Analytics/templates": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateListResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateListResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Analytics"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveTemplateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveTemplateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveTemplateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Analytics/templates/{id}": {
+      "delete": {
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Analytics/summary/departments": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "DepartmentIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "DateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "DateTo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "StatusIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "DirectionIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "CategoryIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "BudgetFieldId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentSummaryDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentSummaryDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentSummaryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Control/projects": {
+      "get": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DirectionIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "DepartmentIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "CategoryIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ControlProjectDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ControlProjectDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ControlProjectDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Control/projects/{projectId}/investments": {
+      "get": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Control/investments/{id}": {
+      "put": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Control/projects/{projectId}/costs": {
+      "get": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Control/costs/{id}": {
+      "put": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Control/projects/{projectId}/progress-reports": {
+      "get": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProgressReportDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProgressReportDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProgressReportDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgressReportRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgressReportRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgressReportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Control/progress-reports/{id}": {
+      "put": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgressReportRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgressReportRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgressReportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Control"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnalyticsResponse": {
+        "type": "object",
+        "properties": {
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectAnalyticsDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ControlProjectDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "nullable": true
+          },
+          "department": {
+            "type": "string",
+            "nullable": true
+          },
+          "budget": {
+            "type": "number",
+            "format": "double"
+          },
+          "invested": {
+            "type": "number",
+            "format": "double"
+          },
+          "progress": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CostDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsible": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CostRequest": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsible": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DepartmentSummaryDto": {
+        "type": "object",
+        "properties": {
+          "departmentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "departmentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "projectCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalBudget": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvestmentDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "plannedAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "plannedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "actualAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "actualDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvestmentRequest": {
+        "type": "object",
+        "properties": {
+          "plannedAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "plannedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "actualAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "actualDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProgressReportDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "progressPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "reportDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProgressReportRequest": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "progressPercentage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProjectAnalyticsDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "rank": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "characteristics": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SaveTemplateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "filtersJson": {
+            "type": "string",
+            "nullable": true
+          },
+          "templateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TemplateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "filtersJson": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TemplateListResponse": {
+        "type": "object",
+        "properties": {
+          "templates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TemplateDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "description": "Введите JWT токен в формате: Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWRvcm92IiwidXNlcklkIjoiMyIsInJvbGVzIjpbIkludmVzdG9yIl0sImlhdCI6MTc3NTIzODU4NDY3OCwiZXhwIjoxNzc1MjM4NjcxMDc4fQ.MdooSWlC3X90zRyDWqxbdsZjiw46q3BNURHtKb6ssk4>",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Analytics"
+    },
+    {
+      "name": "Control"
+    }
+  ]
+}

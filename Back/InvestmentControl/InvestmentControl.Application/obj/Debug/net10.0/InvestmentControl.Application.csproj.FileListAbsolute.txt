@@ -1,0 +1,15 @@
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\InvestmentControl.Application.csproj.AssemblyReference.cache
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\InvestmentControl.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\InvestmentControl.Application.AssemblyInfoInputs.cache
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\InvestmentControl.Application.AssemblyInfo.cs
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\InvestmentControl.Application.csproj.CoreCompileInputs.cache
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\bin\Debug\net10.0\InvestmentControl.Application.deps.json
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\bin\Debug\net10.0\InvestmentControl.Application.dll
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\bin\Debug\net10.0\InvestmentControl.Application.pdb
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\bin\Debug\net10.0\InvestmentControl.Domain.dll
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\bin\Debug\net10.0\InvestmentControl.Domain.pdb
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\Investme.2A9FB017.Up2Date
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\InvestmentControl.Application.dll
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\refint\InvestmentControl.Application.dll
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\InvestmentControl.Application.pdb
+D:\Diplom\DiplomReact\Back\InvestmentControl\InvestmentControl.Application\obj\Debug\net10.0\ref\InvestmentControl.Application.dll

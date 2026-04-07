@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="InvestmentControl.API/InvestmentControl.API.csproj" Id="bd7d5a68-e73e-4cb5-acd8-158b3e941ad6" />
+  <Project Path="InvestmentControl.Application/InvestmentControl.Application.csproj" />
+  <Project Path="InvestmentControl.Domain/InvestmentControl.Domain.csproj" />
+  <Project Path="InvestmentControl.Infrastructure/InvestmentControl.Infrastructure.csproj" />
+  <Project Path="InvestmentControl.Tests/InvestmentControl.Tests.csproj" />
+</Solution>
