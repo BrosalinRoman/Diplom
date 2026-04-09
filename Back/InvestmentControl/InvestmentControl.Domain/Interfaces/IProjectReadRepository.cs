@@ -11,11 +11,12 @@ public interface IProjectReadRepository
         List<int>? statusIds,
         decimal? rankMin,
         decimal? rankMax,
-        List<int>? projectIds,
+        List<int>? allowedProjectIds,
+        List<int>? excludedProjectIds,
         string? search,
-        CancellationToken cancellationToken = default);
+        CancellationToken cancellationToken);
 
-    Task<List<int>> GetProjectIdsByCreatorAsync(int userId, CancellationToken cancellationToken = default);
+    Task<List<int>> GetProjectIdsByCreatorAsync(int userId, CancellationToken cancellationToken);
 
     Task<List<DepartmentSummaryReadModel>> GetDepartmentSummaryAsync(
         List<int>? departmentIds,
@@ -25,7 +26,7 @@ public interface IProjectReadRepository
         List<int>? directionIds,
         List<int>? categoryIds,
         int? budgetFieldId,
-        CancellationToken cancellationToken = default);
+        CancellationToken cancellationToken);
 
     Task<List<ControlProjectReadModel>> GetControlProjectsAsync(
         string? search,
@@ -34,5 +35,10 @@ public interface IProjectReadRepository
         List<int>? categoryIds,
         List<int>? projectIds,
         string? sort,
-        CancellationToken cancellationToken = default);
+        CancellationToken cancellationToken);
+
+    // ДОБАВЛЕННЫЕ МЕТОДЫ
+    Task<bool> ExistsAsync(int projectId, CancellationToken cancellationToken);
+    Task<string?> GetStatusAsync(int projectId, CancellationToken cancellationToken);
+    Task<int?> GetCreatorUserIdAsync(int projectId, CancellationToken cancellationToken);
 }

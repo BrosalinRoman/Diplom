@@ -1,4 +1,7 @@
+using FluentValidation;
+using InvestmentControl.API.Middleware;
 using InvestmentControl.Application.Analytics.Queries;
+using InvestmentControl.Application.Common.Behaviors;
 using InvestmentControl.Application.Common.Interfaces;
 using InvestmentControl.Domain.Interfaces;
 using InvestmentControl.Infrastructure.Data;
@@ -33,7 +36,7 @@ builder.Services.AddSwaggerGen(options =>
         Type = SecuritySchemeType.Http,
         Scheme = "bearer",
         BearerFormat = "JWT",
-        Description = "Введите JWT токен в формате: Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWRvcm92IiwidXNlcklkIjoiMyIsInJvbGVzIjpbIkludmVzdG9yIl0sImlhdCI6MTc3NTU3NzQyMjk5MywiZXhwIjoxNzc1NTc3NTA5MzkzfQ.soCOOs7OdrUiNLNZouxQZgnNFL093j0V8Thv3s__hJQ>\nPayload:{\r\n  \"sub\": \"sidorov\",\r\n  \"userId\": \"3\",\r\n  \"roles\": [\"Investor\"],\r\n  \"iat\": 1775577422993,\r\n  \"exp\": 1775577509393\r\n}",
+        Description = "Введите JWT токен в формате: Bearer <token>",
         Name = "Authorization",
         In = ParameterLocation.Header,
     });
@@ -85,11 +88,17 @@ builder.Services.AddScoped<ICurrentUser, CurrentUserService>();
 
 // Регистрируем MediatR (сканируем сборку Application)
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetProjectsAnalyticsQuery).Assembly));
+// В Program.cs после AddMediatR
+builder.Services.AddValidatorsFromAssembly(typeof(GetProjectsAnalyticsQuery).Assembly);
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 // Регистрируем AutoMapper (если используется)
 // builder.Services.AddAutoMapper(typeof(Program).Assembly); // можно добавить позже
 
 var app = builder.Build();
+
+// Сначала middleware обработки исключений
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Настройка конвейера
 if (app.Environment.IsDevelopment())

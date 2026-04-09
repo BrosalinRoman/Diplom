@@ -17,6 +17,12 @@ public class TemplateRepository : GenericRepository<TemplateEntity, Template, An
         return entities.Select(TemplateMapper.ToDomain);
     }
 
+    public async Task<Template?> GetByUserIdAndNameAsync(int userId, string name, CancellationToken cancellationToken = default)
+    {
+        var entity = await _dbSet.FirstOrDefaultAsync(t => t.UserId == userId && t.Name == name, cancellationToken);
+        return entity == null ? null : TemplateMapper.ToDomain(entity);
+    }
+
     protected override Template MapToDomain(TemplateEntity entity) => TemplateMapper.ToDomain(entity);
     protected override TemplateEntity MapToEntity(Template domain) => TemplateMapper.ToEntity(domain);
 }

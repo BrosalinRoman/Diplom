@@ -6,6 +6,7 @@ public interface ITemplateRepository
 {
     Task<Template?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
     Task<IEnumerable<Template>> GetByUserIdAsync(int userId, CancellationToken cancellationToken = default);
+    Task<Template?> GetByUserIdAndNameAsync(int userId, string name, CancellationToken cancellationToken = default);
     Task AddAsync(Template template, CancellationToken cancellationToken = default);
     void Update(Template template);
     void Delete(Template template);

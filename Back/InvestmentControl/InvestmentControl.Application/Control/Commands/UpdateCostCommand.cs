@@ -4,6 +4,8 @@ using InvestmentControl.Domain.Interfaces;
 using InvestmentControl.Domain.Models;
 using MediatR;
 
+namespace InvestmentControl.Application.Control.Commands;
+
 public class UpdateCostCommand : IRequest
 {
     public int Id { get; set; }
@@ -16,11 +18,13 @@ public class UpdateCostCommand : IRequest
 public class UpdateCostCommandHandler : IRequestHandler<UpdateCostCommand>
 {
     private readonly ICostRepository _costRepository;
+    private readonly IProjectReadRepository _projectReadRepository;
     private readonly ICurrentUser _currentUser;
 
-    public UpdateCostCommandHandler(ICostRepository costRepository, ICurrentUser currentUser)
+    public UpdateCostCommandHandler(ICostRepository costRepository, IProjectReadRepository projectReadRepository, ICurrentUser currentUser)
     {
         _costRepository = costRepository;
+        _projectReadRepository = projectReadRepository;
         _currentUser = currentUser;
     }
 
@@ -33,6 +37,11 @@ public class UpdateCostCommandHandler : IRequestHandler<UpdateCostCommand>
         if (cost == null)
             throw new NotFoundException(nameof(Cost), request.Id);
 
+        var creatorId = await _projectReadRepository.GetCreatorUserIdAsync(cost.ProjectId, cancellationToken);
+        if (creatorId != _currentUser.UserId)
+            throw new ForbiddenAccessException("Вы можете изменять затраты только для своих проектов.");
+
+        // Валидация внутри метода Update
         cost.Update(request.Amount, request.Description, request.Responsible, request.Date);
         _costRepository.Update(cost);
         await _costRepository.SaveChangesAsync(cancellationToken);

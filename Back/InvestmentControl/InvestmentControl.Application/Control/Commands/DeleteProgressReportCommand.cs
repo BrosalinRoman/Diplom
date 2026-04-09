@@ -13,26 +13,31 @@ public class DeleteProgressReportCommand : IRequest
 
 public class DeleteProgressReportCommandHandler : IRequestHandler<DeleteProgressReportCommand>
 {
-    private readonly IProgressReportRepository _repository;
+    private readonly IProgressReportRepository _progressReportRepository;
+    private readonly IProjectReadRepository _projectReadRepository;
     private readonly ICurrentUser _currentUser;
 
-    public DeleteProgressReportCommandHandler(IProgressReportRepository repository, ICurrentUser currentUser)
+    public DeleteProgressReportCommandHandler(IProgressReportRepository progressReportRepository, IProjectReadRepository projectReadRepository, ICurrentUser currentUser)
     {
-        _repository = repository;
+        _progressReportRepository = progressReportRepository;
+        _projectReadRepository = projectReadRepository;
         _currentUser = currentUser;
     }
 
     public async Task Handle(DeleteProgressReportCommand request, CancellationToken cancellationToken)
     {
-        // Только заявитель может удалять отчёты
         if (_currentUser.Role != "Applicant")
             throw new ForbiddenAccessException("Только заявитель может удалять отчёты.");
 
-        var report = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        var report = await _progressReportRepository.GetByIdAsync(request.Id, cancellationToken);
         if (report == null)
             throw new NotFoundException(nameof(ProgressReport), request.Id);
 
-        _repository.Delete(report);
-        await _repository.SaveChangesAsync(cancellationToken);
+        var creatorId = await _projectReadRepository.GetCreatorUserIdAsync(report.ProjectId, cancellationToken);
+        if (creatorId != _currentUser.UserId)
+            throw new ForbiddenAccessException("Вы можете удалять отчёты только для своих проектов.");
+
+        _progressReportRepository.Delete(report);
+        await _progressReportRepository.SaveChangesAsync(cancellationToken);
     }
 }

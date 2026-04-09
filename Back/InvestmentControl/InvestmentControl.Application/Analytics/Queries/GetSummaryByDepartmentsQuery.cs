@@ -30,11 +30,10 @@ public class GetSummaryByDepartmentsQueryHandler : IRequestHandler<GetSummaryByD
 
     public async Task<List<DepartmentSummaryDto>> Handle(GetSummaryByDepartmentsQuery request, CancellationToken cancellationToken)
     {
-        // Доступ только для инвестора
-        if (_currentUser.Role != "Investor")
-            throw new ForbiddenAccessException("Только инвестор может просматривать сводку по подразделениям.");
+        // ИЗМЕНЕНО: доступ для Investor или Admin
+        if (_currentUser.Role != "Investor" && _currentUser.Role != "Admin")
+            throw new ForbiddenAccessException("Только инвестор или администратор может просматривать сводку по подразделениям.");
 
-        // Получаем read-модели из репозитория
         var summaryReadModels = await _projectReadRepository.GetDepartmentSummaryAsync(
             request.DepartmentIds,
             request.DateFrom,
@@ -45,7 +44,6 @@ public class GetSummaryByDepartmentsQueryHandler : IRequestHandler<GetSummaryByD
             request.BudgetFieldId,
             cancellationToken);
 
-        // Маппим read-модели в DTO
         var result = summaryReadModels.Select(s => new DepartmentSummaryDto
         {
             DepartmentId = s.DepartmentId,

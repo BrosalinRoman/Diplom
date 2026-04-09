@@ -11,6 +11,11 @@ public class ProgressReport
 
     public ProgressReport(int projectId, string description, decimal progressPercentage)
     {
+        if (progressPercentage < 0 || progressPercentage > 100)
+            throw new ArgumentException("Прогресс должен быть в диапазоне от 0 до 100.", nameof(progressPercentage));
+        if (string.IsNullOrWhiteSpace(description))
+            throw new ArgumentException("Описание не может быть пустым.", nameof(description));
+
         ProjectId = projectId;
         Description = description;
         ProgressPercentage = progressPercentage;
@@ -30,6 +35,11 @@ public class ProgressReport
 
     public void Update(string description, decimal progressPercentage)
     {
+        if (progressPercentage < 0 || progressPercentage > 100)
+            throw new ArgumentException("Прогресс должен быть в диапазоне от 0 до 100.", nameof(progressPercentage));
+        if (string.IsNullOrWhiteSpace(description))
+            throw new ArgumentException("Описание не может быть пустым.", nameof(description));
+
         Description = description;
         ProgressPercentage = progressPercentage;
         UpdatedAt = DateTime.UtcNow;

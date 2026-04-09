@@ -23,13 +23,13 @@ public class ProjectReadRepository : IProjectReadRepository
         List<int>? statusIds,
         decimal? rankMin,
         decimal? rankMax,
-        List<int>? projectIds,
+        List<int>? allowedProjectIds,
+        List<int>? excludedProjectIds,
         string? search,
         CancellationToken cancellationToken)
     {
         var query = _readOnlyContext.Projects.AsQueryable();
 
-        // Фильтр по категории
         query = query.Where(p => p.CategoryId == categoryId);
 
         if (directionIds != null && directionIds.Any())
@@ -42,8 +42,10 @@ public class ProjectReadRepository : IProjectReadRepository
             query = query.Where(p => p.Rank >= rankMin.Value);
         if (rankMax.HasValue)
             query = query.Where(p => p.Rank <= rankMax.Value);
-        if (projectIds != null && projectIds.Any())
-            query = query.Where(p => projectIds.Contains(p.Id));
+        if (allowedProjectIds != null && allowedProjectIds.Any())
+            query = query.Where(p => allowedProjectIds.Contains(p.Id));
+        if (excludedProjectIds != null && excludedProjectIds.Any())
+            query = query.Where(p => !excludedProjectIds.Contains(p.Id));
         if (!string.IsNullOrEmpty(search))
             query = query.Where(p => p.Name.Contains(search));
 
@@ -51,13 +53,11 @@ public class ProjectReadRepository : IProjectReadRepository
         if (!projects.Any())
             return new List<ProjectReadModel>();
 
-        // Загружаем значения характеристик для найденных проектов
         var projectIdsList = projects.Select(p => p.Id).ToList();
         var characteristicValues = await _readOnlyContext.ProjectCharacteristicValues
             .Where(pcv => projectIdsList.Contains(pcv.ProjectId))
             .ToListAsync(cancellationToken);
 
-        // Загружаем связи категория-характеристика для данной категории
         var categoryCharacteristics = await _readOnlyContext.CategoryCharacteristics
             .Where(cc => cc.CategoryId == categoryId)
             .ToListAsync(cancellationToken);
@@ -66,7 +66,6 @@ public class ProjectReadRepository : IProjectReadRepository
             .Where(ch => characteristicIds.Contains(ch.Id))
             .ToDictionaryAsync(ch => ch.Id, ch => ch.Name, cancellationToken);
 
-        // Заполняем свойство Characteristics для каждого проекта
         foreach (var p in projects)
         {
             var dict = new Dictionary<string, decimal?>();
@@ -107,10 +106,11 @@ public class ProjectReadRepository : IProjectReadRepository
 
         if (departmentIds != null && departmentIds.Any())
             query = query.Where(p => departmentIds.Contains(p.DepartmentId));
+        // ИЗМЕНЕНО: фильтр по дате публикации
         if (dateFrom.HasValue)
-            query = query.Where(p => p.CreatedAt >= dateFrom.Value);
+            query = query.Where(p => p.PublishedAt >= dateFrom.Value);
         if (dateTo.HasValue)
-            query = query.Where(p => p.CreatedAt <= dateTo.Value);
+            query = query.Where(p => p.PublishedAt <= dateTo.Value);
         if (statusIds != null && statusIds.Any())
             query = query.Where(p => p.StatusId.HasValue && statusIds.Contains(p.StatusId.Value));
         if (directionIds != null && directionIds.Any())
@@ -125,8 +125,7 @@ public class ProjectReadRepository : IProjectReadRepository
         var departmentNames = await _readOnlyContext.Departments
             .ToDictionaryAsync(d => d.Id, d => d.Name, cancellationToken);
 
-        // Определяем бюджет: либо из поля Budget, либо из характеристики
-        Dictionary<int, decimal?> budgets = new(); // ← изменён тип
+        Dictionary<int, decimal?> budgets = new();
         if (budgetFieldId.HasValue)
         {
             var budgetChar = await _readOnlyContext.Characteristics
@@ -150,7 +149,7 @@ public class ProjectReadRepository : IProjectReadRepository
                 DepartmentId = g.Key,
                 DepartmentName = departmentNames.GetValueOrDefault(g.Key, "Неизвестно"),
                 ProjectCount = g.Count(),
-                TotalBudget = g.Sum(p => budgets.TryGetValue(p.Id, out var b) ? (b ?? 0) : (p.Budget ?? 0)) // ← b ?? 0
+                TotalBudget = g.Sum(p => budgets.TryGetValue(p.Id, out var b) ? (b ?? 0) : (p.Budget ?? 0))
             })
             .OrderBy(d => d.DepartmentName)
             .ToList();
@@ -167,7 +166,6 @@ public class ProjectReadRepository : IProjectReadRepository
         string? sort,
         CancellationToken cancellationToken)
     {
-        // Получаем ID статуса "Активен" (предполагаем, что имя статуса именно такое)
         var activeStatusId = await _readOnlyContext.Statuses
             .Where(s => s.Name == "Активен")
             .Select(s => s.Id)
@@ -192,7 +190,6 @@ public class ProjectReadRepository : IProjectReadRepository
         if (!projects.Any())
             return new List<ControlProjectReadModel>();
 
-        // Словари для получения имён
         var categoryNames = await _readOnlyContext.Categories
             .ToDictionaryAsync(c => c.Id, c => c.Name, cancellationToken);
         var directionNames = await _readOnlyContext.Directions
@@ -200,14 +197,12 @@ public class ProjectReadRepository : IProjectReadRepository
         var departmentNames = await _readOnlyContext.Departments
             .ToDictionaryAsync(d => d.Id, d => d.Name, cancellationToken);
 
-        // Сумма фактических инвестиций из control_service
         var investments = await _controlContext.Investments
             .Where(i => i.ActualAmount.HasValue)
             .GroupBy(i => i.ProjectId)
             .Select(g => new { ProjectId = g.Key, Sum = g.Sum(i => i.ActualAmount.Value) })
             .ToDictionaryAsync(x => x.ProjectId, x => x.Sum, cancellationToken);
 
-        // Максимальный прогресс из отчётов
         var reports = await _controlContext.ProgressReports
             .GroupBy(r => r.ProjectId)
             .Select(g => new { ProjectId = g.Key, MaxProgress = g.Max(r => r.ProgressPercentage) })
@@ -226,7 +221,11 @@ public class ProjectReadRepository : IProjectReadRepository
             StartDate = p.PublishedAt ?? p.CreatedAt
         }).ToList();
 
-        // Сортировка
+        // Валидация параметра sort
+        var allowedSortValues = new[] { "date_desc", "name_asc", "progress_desc", "progress_asc" };
+        if (!string.IsNullOrEmpty(sort) && !allowedSortValues.Contains(sort))
+            throw new ArgumentException($"Недопустимое значение sort. Допустимы: {string.Join(", ", allowedSortValues)}");
+
         result = sort switch
         {
             "name_asc" => result.OrderBy(r => r.Name).ToList(),
@@ -236,5 +235,30 @@ public class ProjectReadRepository : IProjectReadRepository
         };
 
         return result;
+    }
+
+    // ДОБАВЛЕНО: проверка существования проекта
+    public async Task<bool> ExistsAsync(int projectId, CancellationToken cancellationToken)
+    {
+        return await _readOnlyContext.Projects.AnyAsync(p => p.Id == projectId, cancellationToken);
+    }
+
+    // ДОБАВЛЕНО: получение статуса проекта
+    public async Task<string?> GetStatusAsync(int projectId, CancellationToken cancellationToken)
+    {
+        var project = await _readOnlyContext.Projects
+            .Include(p => p.Status)
+            .FirstOrDefaultAsync(p => p.Id == projectId, cancellationToken);
+        return project?.Status?.Name;
+    }
+
+    // ДОБАВЛЕНО: получение ID создателя проекта
+    public async Task<int?> GetCreatorUserIdAsync(int projectId, CancellationToken cancellationToken)
+    {
+        var project = await _readOnlyContext.Projects
+            .Where(p => p.Id == projectId)
+            .Select(p => p.CreatedByUserId)
+            .FirstOrDefaultAsync(cancellationToken);
+        return project == 0 ? null : project;
     }
 }

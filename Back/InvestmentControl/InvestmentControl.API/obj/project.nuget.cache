@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Wpw5vREOLl4=",
+  "dgSpecHash": "rSnM20TlXK4=",
   "success": true,
   "projectFilePath": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\InvestmentControl.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\reloy\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
     "C:\\Users\\reloy\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
+    "C:\\Users\\reloy\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.1\\fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
     "C:\\Users\\reloy\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\reloy\\.nuget\\packages\\mediatr\\14.1.0\\mediatr.14.1.0.nupkg.sha512",
     "C:\\Users\\reloy\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

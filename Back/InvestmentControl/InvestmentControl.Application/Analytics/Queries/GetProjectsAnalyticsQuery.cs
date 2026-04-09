@@ -13,7 +13,7 @@ public class GetProjectsAnalyticsQuery : IRequest<List<ProjectAnalyticsDto>>
     public List<int>? StatusIds { get; set; }
     public decimal? RankMin { get; set; }
     public decimal? RankMax { get; set; }
-    public List<int>? ProjectIds { get; set; }
+    public List<int>? ExcludedProjectIds { get; set; } // ИЗМЕНЕНО: исключаемые ID
     public List<string>? SelectedFields { get; set; }
     public string? Search { get; set; }
 }
@@ -31,17 +31,14 @@ public class GetProjectsAnalyticsQueryHandler : IRequestHandler<GetProjectsAnaly
 
     public async Task<List<ProjectAnalyticsDto>> Handle(GetProjectsAnalyticsQuery request, CancellationToken cancellationToken)
     {
-        // Определяем, какие проекты видит пользователь
-        List<int>? projectIds = request.ProjectIds;
-        if (projectIds == null || !projectIds.Any())
+        // Определяем, какие проекты видит пользователь (только свои для Applicant)
+        List<int>? allowedProjectIds = null;
+        if (_currentUser.Role == "Applicant")
         {
-            // Если роль Applicant - только свои проекты
-            if (_currentUser.Role == "Applicant")
-                projectIds = await _projectReadRepository.GetProjectIdsByCreatorAsync(_currentUser.UserId, cancellationToken);
-            // Для Investor projectIds остаётся null (означает все проекты)
+            allowedProjectIds = await _projectReadRepository.GetProjectIdsByCreatorAsync(_currentUser.UserId, cancellationToken);
         }
 
-        // Получаем проекты с фильтрацией (возвращает List<ProjectReadModel>)
+        // Получаем проекты с фильтрацией
         var projects = await _projectReadRepository.GetFilteredProjectsAsync(
             request.CategoryId,
             request.DirectionIds,
@@ -49,11 +46,11 @@ public class GetProjectsAnalyticsQueryHandler : IRequestHandler<GetProjectsAnaly
             request.StatusIds,
             request.RankMin,
             request.RankMax,
-            projectIds,
+            allowedProjectIds,          // проекты, которые пользователь может видеть
+            request.ExcludedProjectIds, // проекты, которые нужно исключить
             request.Search,
             cancellationToken);
 
-        // Маппим read-модели в DTO
         var result = projects.Select(p => new ProjectAnalyticsDto
         {
             Id = p.Id,

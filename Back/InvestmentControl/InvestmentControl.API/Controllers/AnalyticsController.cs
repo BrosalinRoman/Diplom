@@ -32,13 +32,12 @@ public class AnalyticsController : ControllerBase
             StatusIds = request.StatusIds,
             RankMin = request.RankMin,
             RankMax = request.RankMax,
-            ProjectIds = request.ProjectIds,
+            ExcludedProjectIds = request.ProjectIds, // ИЗМЕНЕНО: теперь исключение
             SelectedFields = request.SelectedFields,
             Search = request.Search
         };
 
         var projects = await _mediator.Send(query);
-        // TODO: добавить информацию о характеристиках и диапазонах
         return Ok(new AnalyticsResponse { Projects = projects });
     }
 
@@ -47,6 +46,14 @@ public class AnalyticsController : ControllerBase
     {
         var templates = await _mediator.Send(new GetTemplatesQuery());
         return Ok(new TemplateListResponse { Templates = templates });
+    }
+
+    // ДОБАВЛЕНО: получение шаблона по ID
+    [HttpGet("templates/{id}")]
+    public async Task<ActionResult<TemplateDto>> GetTemplate(int id)
+    {
+        var template = await _mediator.Send(new GetTemplateByIdQuery { Id = id });
+        return Ok(template);
     }
 
     [HttpPost("templates")]
@@ -59,7 +66,9 @@ public class AnalyticsController : ControllerBase
             TemplateId = request.TemplateId
         };
         var id = await _mediator.Send(command);
-        return Ok(id);
+
+        // ИЗМЕНЕНО: возвращаем 201 Created
+        return CreatedAtAction(nameof(GetTemplate), new { id }, id);
     }
 
     [HttpDelete("templates/{id}")]
@@ -70,7 +79,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("summary/departments")]
-    public async Task<ActionResult<List<DepartmentSummaryDto>>> GetSummary([FromQuery] SummaryRequest request)
+    public async Task<ActionResult<SummaryResponse>> GetSummary([FromQuery] SummaryRequest request)
     {
         var query = new GetSummaryByDepartmentsQuery
         {
@@ -82,7 +91,15 @@ public class AnalyticsController : ControllerBase
             CategoryIds = request.CategoryIds,
             BudgetFieldId = request.BudgetFieldId
         };
-        var summary = await _mediator.Send(query);
-        return Ok(summary);
+        var departments = await _mediator.Send(query);
+
+        // ИЗМЕНЕНО: формируем SummaryResponse с итогами
+        var response = new SummaryResponse
+        {
+            Departments = departments,
+            TotalBudget = departments.Sum(d => d.TotalBudget),
+            TotalProjects = departments.Sum(d => d.ProjectCount)
+        };
+        return Ok(response);
     }
 }

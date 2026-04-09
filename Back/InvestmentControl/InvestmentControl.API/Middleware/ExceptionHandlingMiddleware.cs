@@ -50,6 +50,19 @@ public class ExceptionHandlingMiddleware
                 response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 errorResponse.Error = exception.Message;
                 break;
+            case ArgumentException:
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                errorResponse.Error = exception.Message;
+                break;
+            case InvalidOperationException:
+                response.StatusCode = (int)HttpStatusCode.Conflict; // 409
+                errorResponse.Error = exception.Message;
+                break;
+            case FormatException:
+            case NullReferenceException:
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                errorResponse.Error = "Некорректные данные в запросе.";
+                break;
             default:
                 response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 errorResponse.Error = "Внутренняя ошибка сервера.";

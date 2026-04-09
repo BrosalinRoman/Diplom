@@ -18,33 +18,31 @@ public class AddInvestmentCommand : IRequest<int>
 public class AddInvestmentCommandHandler : IRequestHandler<AddInvestmentCommand, int>
 {
     private readonly IInvestmentRepository _investmentRepository;
+    private readonly IProjectReadRepository _projectReadRepository;
     private readonly ICurrentUser _currentUser;
 
-    public AddInvestmentCommandHandler(IInvestmentRepository investmentRepository, ICurrentUser currentUser)
+    public AddInvestmentCommandHandler(IInvestmentRepository investmentRepository, IProjectReadRepository projectReadRepository, ICurrentUser currentUser)
     {
         _investmentRepository = investmentRepository;
+        _projectReadRepository = projectReadRepository;
         _currentUser = currentUser;
     }
 
     public async Task<int> Handle(AddInvestmentCommand request, CancellationToken cancellationToken)
     {
-        // Проверка прав: только инвестор может добавлять инвестиции
         if (_currentUser.Role != "Investor")
             throw new ForbiddenAccessException("Только инвестор может добавлять инвестиции.");
 
-        // Дополнительно можно проверить, что проект существует и активен (через ProjectReadRepository)
+        if (!await _projectReadRepository.ExistsAsync(request.ProjectId, cancellationToken))
+            throw new NotFoundException("Project", request.ProjectId);
 
-        var investment = new Investment(
-            request.ProjectId,
-            request.PlannedAmount,
-            request.PlannedDate,
-            request.ActualAmount,
-            request.ActualDate
-        );
+        var status = await _projectReadRepository.GetStatusAsync(request.ProjectId, cancellationToken);
+        if (status != "Активен" && status != "Завершен")
+            throw new ArgumentException("Инвестиции можно добавлять только для активных или завершённых проектов.");
 
+        var investment = new Investment(request.ProjectId, request.PlannedAmount, request.PlannedDate, request.ActualAmount, request.ActualDate);
         await _investmentRepository.AddAsync(investment, cancellationToken);
         await _investmentRepository.SaveChangesAsync(cancellationToken);
-
         return investment.Id;
     }
 }

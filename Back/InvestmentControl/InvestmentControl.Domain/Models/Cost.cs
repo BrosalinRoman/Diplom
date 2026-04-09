@@ -12,6 +12,13 @@ public class Cost
 
     public Cost(int projectId, decimal amount, string description, string responsible, DateTime date)
     {
+        if (amount <= 0)
+            throw new ArgumentException("Сумма затрат должна быть положительной.", nameof(amount));
+        if (string.IsNullOrWhiteSpace(description))
+            throw new ArgumentException("Описание не может быть пустым.", nameof(description));
+        if (string.IsNullOrWhiteSpace(responsible))
+            throw new ArgumentException("Ответственный не может быть пустым.", nameof(responsible));
+
         ProjectId = projectId;
         Amount = amount;
         Description = description;
@@ -33,6 +40,13 @@ public class Cost
 
     public void Update(decimal amount, string description, string responsible, DateTime date)
     {
+        if (amount <= 0)
+            throw new ArgumentException("Сумма затрат должна быть положительной.", nameof(amount));
+        if (string.IsNullOrWhiteSpace(description))
+            throw new ArgumentException("Описание не может быть пустым.", nameof(description));
+        if (string.IsNullOrWhiteSpace(responsible))
+            throw new ArgumentException("Ответственный не может быть пустым.", nameof(responsible));
+
         Amount = amount;
         Description = description;
         Responsible = responsible;

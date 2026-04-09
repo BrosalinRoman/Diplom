@@ -111,7 +111,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[InvestmentControl.Application.Analytics.DTOs.DepartmentSummaryDto, InvestmentControl.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "InvestmentControl.API.DTOs.Responses.SummaryResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -158,6 +158,32 @@
     "ReturnTypes": [
       {
         "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "InvestmentControl.API.Controllers.AnalyticsController",
+    "Method": "GetTemplate",
+    "RelativePath": "api/Analytics/templates/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "InvestmentControl.Application.Analytics.DTOs.TemplateDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

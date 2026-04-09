@@ -1,8 +1,5 @@
 ﻿namespace InvestmentControl.Domain.Models;
 
-/// <summary>
-/// Доменная модель инвестиции (плановая и фактическая).
-/// </summary>
 public class Investment
 {
     public int Id { get; private set; }
@@ -13,22 +10,23 @@ public class Investment
     public DateTime? ActualDate { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
-    // Для создания новой инвестиции (например, при добавлении фактической)
     public Investment(int projectId, decimal? plannedAmount, DateTime? plannedDate, decimal? actualAmount, DateTime? actualDate)
     {
+        if (!plannedAmount.HasValue && !actualAmount.HasValue)
+            throw new ArgumentException("Должна быть указана либо плановая, либо фактическая сумма.");
+        if (plannedAmount.HasValue && plannedAmount <= 0)
+            throw new ArgumentException("Плановая сумма должна быть положительной.", nameof(plannedAmount));
+        if (actualAmount.HasValue && actualAmount <= 0)
+            throw new ArgumentException("Фактическая сумма должна быть положительной.", nameof(actualAmount));
+
         ProjectId = projectId;
         PlannedAmount = plannedAmount;
         PlannedDate = plannedDate;
         ActualAmount = actualAmount;
         ActualDate = actualDate;
         CreatedAt = DateTime.UtcNow;
-
-        // Инвариант: хотя бы одно из полей должно быть заполнено
-        if (!PlannedAmount.HasValue && !ActualAmount.HasValue)
-            throw new ArgumentException("Должна быть указана либо плановая, либо фактическая сумма.");
     }
 
-    // Конструктор для восстановления из БД
     public Investment(int id, int projectId, decimal? plannedAmount, DateTime? plannedDate, decimal? actualAmount, DateTime? actualDate, DateTime createdAt)
     {
         Id = id;
@@ -40,14 +38,18 @@ public class Investment
         CreatedAt = createdAt;
     }
 
-    // Обновление инвестиции (например, инвестор корректирует)
     public void Update(decimal? plannedAmount, DateTime? plannedDate, decimal? actualAmount, DateTime? actualDate)
     {
+        if (!plannedAmount.HasValue && !actualAmount.HasValue)
+            throw new ArgumentException("Должна быть указана либо плановая, либо фактическая сумма.");
+        if (plannedAmount.HasValue && plannedAmount <= 0)
+            throw new ArgumentException("Плановая сумма должна быть положительной.", nameof(plannedAmount));
+        if (actualAmount.HasValue && actualAmount <= 0)
+            throw new ArgumentException("Фактическая сумма должна быть положительной.", nameof(actualAmount));
+
         PlannedAmount = plannedAmount;
         PlannedDate = plannedDate;
         ActualAmount = actualAmount;
         ActualDate = actualDate;
-        if (!PlannedAmount.HasValue && !ActualAmount.HasValue)
-            throw new ArgumentException("Должна быть указана либо плановая, либо фактическая сумма.");
     }
 }

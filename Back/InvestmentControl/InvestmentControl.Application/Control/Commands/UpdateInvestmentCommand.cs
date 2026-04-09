@@ -1,5 +1,4 @@
-﻿// Application/Control/Commands/UpdateInvestmentCommand.cs
-using InvestmentControl.Application.Common.Exceptions;
+﻿using InvestmentControl.Application.Common.Exceptions;
 using InvestmentControl.Application.Common.Interfaces;
 using InvestmentControl.Domain.Interfaces;
 using InvestmentControl.Domain.Models;
@@ -19,11 +18,13 @@ public class UpdateInvestmentCommand : IRequest
 public class UpdateInvestmentCommandHandler : IRequestHandler<UpdateInvestmentCommand>
 {
     private readonly IInvestmentRepository _investmentRepository;
+    private readonly IProjectReadRepository _projectReadRepository;
     private readonly ICurrentUser _currentUser;
 
-    public UpdateInvestmentCommandHandler(IInvestmentRepository investmentRepository, ICurrentUser currentUser)
+    public UpdateInvestmentCommandHandler(IInvestmentRepository investmentRepository, IProjectReadRepository projectReadRepository, ICurrentUser currentUser)
     {
         _investmentRepository = investmentRepository;
+        _projectReadRepository = projectReadRepository;
         _currentUser = currentUser;
     }
 
@@ -35,6 +36,14 @@ public class UpdateInvestmentCommandHandler : IRequestHandler<UpdateInvestmentCo
         var investment = await _investmentRepository.GetByIdAsync(request.Id, cancellationToken);
         if (investment == null)
             throw new NotFoundException(nameof(Investment), request.Id);
+
+        if (!await _projectReadRepository.ExistsAsync(investment.ProjectId, cancellationToken))
+            throw new NotFoundException("Project", investment.ProjectId);
+
+        // Опционально проверяем статус проекта (можно убрать, если не нужно)
+        var status = await _projectReadRepository.GetStatusAsync(investment.ProjectId, cancellationToken);
+        if (status != "Активен" && status != "Завершен")
+            throw new ArgumentException("Инвестиции можно изменять только для активных или завершённых проектов.");
 
         investment.Update(request.PlannedAmount, request.PlannedDate, request.ActualAmount, request.ActualDate);
         _investmentRepository.Update(investment);
