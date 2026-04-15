@@ -24,6 +24,9 @@ public class DeleteTemplateCommandHandler : IRequestHandler<DeleteTemplateComman
 
     public async Task Handle(DeleteTemplateCommand request, CancellationToken cancellationToken)
     {
+        if (request.Id <= 0)
+            throw new ArgumentException("ID шаблона должен быть положительным.");
+
         var template = await _templateRepository.GetByIdAsync(request.Id, cancellationToken);
         if (template == null)
             throw new NotFoundException(nameof(Template), request.Id);

@@ -1,4 +1,5 @@
 ﻿using InvestmentControl.Application.Analytics.DTOs;
+using InvestmentControl.Application.Common.Helpers;
 using InvestmentControl.Application.Common.Interfaces;
 using InvestmentControl.Domain.Interfaces;
 using MediatR;
@@ -31,14 +32,29 @@ public class GetProjectsAnalyticsQueryHandler : IRequestHandler<GetProjectsAnaly
 
     public async Task<List<ProjectAnalyticsDto>> Handle(GetProjectsAnalyticsQuery request, CancellationToken cancellationToken)
     {
-        // Определяем, какие проекты видит пользователь (только свои для Applicant)
+        ValidationHelper.EnsurePositiveIds(request.DirectionIds, nameof(request.DirectionIds));
+        ValidationHelper.EnsurePositiveIds(request.DepartmentIds, nameof(request.DepartmentIds));
+        ValidationHelper.EnsurePositiveIds(request.StatusIds, nameof(request.StatusIds));
+        ValidationHelper.EnsurePositiveIds(request.ExcludedProjectIds, nameof(request.ExcludedProjectIds));
+
+        // Проверка обязательного CategoryId
+        if (request.CategoryId <= 0)
+            throw new ArgumentException("CategoryId обязателен и должен быть положительным.");
+
+        // Проверка рангов на отрицательные значения
+        if (request.RankMin.HasValue && request.RankMin < 0)
+            throw new ArgumentException("RankMin не может быть отрицательным.");
+        if (request.RankMax.HasValue && request.RankMax < 0)
+            throw new ArgumentException("RankMax не может быть отрицательным.");
+
+        // Проверка диапазона Rank
+        if (request.RankMin.HasValue && request.RankMax.HasValue && request.RankMin > request.RankMax)
+            throw new ArgumentException("RankMin не может быть больше RankMax.");
+
         List<int>? allowedProjectIds = null;
         if (_currentUser.Role == "Applicant")
-        {
             allowedProjectIds = await _projectReadRepository.GetProjectIdsByCreatorAsync(_currentUser.UserId, cancellationToken);
-        }
 
-        // Получаем проекты с фильтрацией
         var projects = await _projectReadRepository.GetFilteredProjectsAsync(
             request.CategoryId,
             request.DirectionIds,
@@ -46,8 +62,8 @@ public class GetProjectsAnalyticsQueryHandler : IRequestHandler<GetProjectsAnaly
             request.StatusIds,
             request.RankMin,
             request.RankMax,
-            allowedProjectIds,          // проекты, которые пользователь может видеть
-            request.ExcludedProjectIds, // проекты, которые нужно исключить
+            allowedProjectIds,
+            request.ExcludedProjectIds,
             request.Search,
             cancellationToken);
 

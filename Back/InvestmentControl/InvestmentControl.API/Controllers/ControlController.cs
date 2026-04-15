@@ -35,6 +35,7 @@ public class ControlController : ControllerBase
         return Ok(projects);
     }
 
+    // investments
     [HttpGet("projects/{projectId}/investments")]
     public async Task<ActionResult<List<InvestmentDto>>> GetInvestments(int projectId)
     {
@@ -54,11 +55,11 @@ public class ControlController : ControllerBase
             ActualDate = request.ActualDate
         };
         var id = await _mediator.Send(command);
-        return Ok(id);
+        return CreatedAtAction(nameof(GetInvestments), new { projectId }, id);
     }
 
     [HttpPut("investments/{id}")]
-    public async Task<IActionResult> UpdateInvestment(int id, [FromBody] InvestmentRequest request)
+    public async Task<ActionResult<InvestmentDto>> UpdateInvestment(int id, [FromBody] InvestmentRequest request)
     {
         var command = new UpdateInvestmentCommand
         {
@@ -68,8 +69,8 @@ public class ControlController : ControllerBase
             ActualAmount = request.ActualAmount,
             ActualDate = request.ActualDate
         };
-        await _mediator.Send(command);
-        return NoContent();
+        var investment = await _mediator.Send(command);
+        return Ok(investment);
     }
 
     [HttpDelete("investments/{id}")]
@@ -79,6 +80,7 @@ public class ControlController : ControllerBase
         return NoContent();
     }
 
+    // costs
     [HttpGet("projects/{projectId}/costs")]
     public async Task<ActionResult<List<CostDto>>> GetCosts(int projectId)
     {
@@ -98,11 +100,11 @@ public class ControlController : ControllerBase
             Date = request.Date
         };
         var id = await _mediator.Send(command);
-        return Ok(id);
+        return CreatedAtAction(nameof(GetCosts), new { projectId }, id);
     }
 
     [HttpPut("costs/{id}")]
-    public async Task<IActionResult> UpdateCost(int id, [FromBody] CostRequest request)
+    public async Task<ActionResult<CostDto>> UpdateCost(int id, [FromBody] CostRequest request)
     {
         var command = new UpdateCostCommand
         {
@@ -112,8 +114,8 @@ public class ControlController : ControllerBase
             Responsible = request.Responsible,
             Date = request.Date
         };
-        await _mediator.Send(command);
-        return NoContent();
+        var cost = await _mediator.Send(command);
+        return Ok(cost);
     }
 
     [HttpDelete("costs/{id}")]
@@ -123,6 +125,7 @@ public class ControlController : ControllerBase
         return NoContent();
     }
 
+    // progress reports
     [HttpGet("projects/{projectId}/progress-reports")]
     public async Task<ActionResult<List<ProgressReportDto>>> GetProgressReports(int projectId)
     {
@@ -140,11 +143,11 @@ public class ControlController : ControllerBase
             ProgressPercentage = request.ProgressPercentage
         };
         var id = await _mediator.Send(command);
-        return Ok(id);
+        return CreatedAtAction(nameof(GetProgressReports), new { projectId }, id);
     }
 
     [HttpPut("progress-reports/{id}")]
-    public async Task<IActionResult> UpdateProgressReport(int id, [FromBody] ProgressReportRequest request)
+    public async Task<ActionResult<ProgressReportDto>> UpdateProgressReport(int id, [FromBody] ProgressReportRequest request)
     {
         var command = new UpdateProgressReportCommand
         {
@@ -152,8 +155,8 @@ public class ControlController : ControllerBase
             Description = request.Description,
             ProgressPercentage = request.ProgressPercentage
         };
-        await _mediator.Send(command);
-        return NoContent();
+        var report = await _mediator.Send(command);
+        return Ok(report);
     }
 
     [HttpDelete("progress-reports/{id}")]

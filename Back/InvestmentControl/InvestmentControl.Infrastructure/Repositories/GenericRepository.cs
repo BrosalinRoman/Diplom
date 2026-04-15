@@ -38,13 +38,35 @@ public abstract class GenericRepository<TEntity, TDomain, TContext> : IRepositor
     public virtual void Update(TDomain domain)
     {
         var entity = MapToEntity(domain);
-        _dbSet.Update(entity);
+        var trackedEntity = GetTrackedEntity(entity);
+
+        if (trackedEntity != null)
+        {
+            // Обновляем уже отслеживаемую сущность
+            _context.Entry(trackedEntity).CurrentValues.SetValues(entity);
+        }
+        else
+        {
+            // Если нет отслеживаемой, прикрепляем новую как Modified
+            _dbSet.Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+        }
     }
 
     public virtual void Delete(TDomain domain)
     {
         var entity = MapToEntity(domain);
-        _dbSet.Remove(entity);
+        var trackedEntity = GetTrackedEntity(entity);
+
+        if (trackedEntity != null)
+        {
+            _dbSet.Remove(trackedEntity);
+        }
+        else
+        {
+            _dbSet.Attach(entity);
+            _dbSet.Remove(entity);
+        }
     }
 
     public virtual async Task SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -54,4 +76,31 @@ public abstract class GenericRepository<TEntity, TDomain, TContext> : IRepositor
 
     protected abstract TDomain MapToDomain(TEntity entity);
     protected abstract TEntity MapToEntity(TDomain domain);
+
+    // Находит уже отслеживаемую сущность по Id
+    private TEntity? GetTrackedEntity(TEntity entity)
+    {
+        var entityId = GetEntityId(entity);
+        if (entityId == null) return null;
+
+        // Ищем в локальном кэше
+        var tracked = _dbSet.Local.FirstOrDefault(e => GetEntityId(e)?.Equals(entityId) == true);
+        if (tracked != null) return tracked;
+
+        // Если не нашли, пробуем найти через ChangeTracker (более надёжно)
+        foreach (var entry in _context.ChangeTracker.Entries<TEntity>())
+        {
+            var id = GetEntityId(entry.Entity);
+            if (id?.Equals(entityId) == true)
+                return entry.Entity;
+        }
+
+        return null;
+    }
+
+    private static object? GetEntityId(TEntity entity)
+    {
+        var property = typeof(TEntity).GetProperty("Id");
+        return property?.GetValue(entity);
+    }
 }

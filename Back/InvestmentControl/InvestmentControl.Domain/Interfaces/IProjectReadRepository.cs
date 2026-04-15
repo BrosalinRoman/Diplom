@@ -25,7 +25,6 @@ public interface IProjectReadRepository
         List<int>? statusIds,
         List<int>? directionIds,
         List<int>? categoryIds,
-        int? budgetFieldId,
         CancellationToken cancellationToken);
 
     Task<List<ControlProjectReadModel>> GetControlProjectsAsync(
@@ -41,4 +40,9 @@ public interface IProjectReadRepository
     Task<bool> ExistsAsync(int projectId, CancellationToken cancellationToken);
     Task<string?> GetStatusAsync(int projectId, CancellationToken cancellationToken);
     Task<int?> GetCreatorUserIdAsync(int projectId, CancellationToken cancellationToken);
+    Task<DateTime?> GetPublishedAtAsync(int projectId, CancellationToken cancellationToken);
+    Task<decimal?> GetBudgetAsync(int projectId, CancellationToken cancellationToken);
+    Task<int?> GetStatusIdByNameAsync(string name, CancellationToken cancellationToken);
+
+    Task<List<int>> GetAllStatusIdsAsync(CancellationToken cancellationToken);
 }

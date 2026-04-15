@@ -25,11 +25,13 @@ public class GetTemplateByIdQueryHandler : IRequestHandler<GetTemplateByIdQuery,
 
     public async Task<TemplateDto> Handle(GetTemplateByIdQuery request, CancellationToken cancellationToken)
     {
+        if (request.Id <= 0)
+            throw new ArgumentException("ID шаблона должен быть положительным.");
+
         var template = await _templateRepository.GetByIdAsync(request.Id, cancellationToken);
         if (template == null)
             throw new NotFoundException(nameof(Template), request.Id);
 
-        // Проверяем, что шаблон принадлежит текущему пользователю (или администратору?)
         if (template.UserId != _currentUser.UserId && _currentUser.Role != "Admin")
             throw new ForbiddenAccessException("Нет доступа к этому шаблону.");
 

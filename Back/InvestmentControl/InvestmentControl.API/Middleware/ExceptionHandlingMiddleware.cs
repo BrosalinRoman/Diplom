@@ -51,6 +51,7 @@ public class ExceptionHandlingMiddleware
                 errorResponse.Error = exception.Message;
                 break;
             case ArgumentException:
+            case FluentValidation.ValidationException:
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
                 errorResponse.Error = exception.Message;
                 break;

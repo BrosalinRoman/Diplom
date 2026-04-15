@@ -1,4 +1,5 @@
 using FluentValidation;
+using InvestmentControl.API.DTOs.Responses;
 using InvestmentControl.API.Middleware;
 using InvestmentControl.Application.Analytics.Queries;
 using InvestmentControl.Application.Common.Behaviors;
@@ -9,6 +10,7 @@ using InvestmentControl.Infrastructure.Repositories;
 using InvestmentControl.Infrastructure.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
@@ -17,7 +19,20 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Добавляем контроллеры
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState
+                .Where(e => e.Value.Errors.Count > 0)
+                .SelectMany(e => e.Value.Errors.Select(x => x.ErrorMessage))
+                .ToList();
+            return new BadRequestObjectResult(new ErrorResponse { Error = string.Join("; ", errors) });
+        };
+    });
+
+
 builder.Services.AddEndpointsApiExplorer();
 
 // ===== НАСТРОЙКА SWAGGER С JWT =====

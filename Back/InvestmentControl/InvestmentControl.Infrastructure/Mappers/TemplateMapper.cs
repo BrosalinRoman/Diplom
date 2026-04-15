@@ -20,7 +20,7 @@ public static class TemplateMapper
     {
         return new TemplateEntity
         {
-            Id = domain.Id,
+            Id = domain.Id,         
             Name = domain.Name,
             UserId = domain.UserId,
             FiltersJson = domain.FiltersJson,

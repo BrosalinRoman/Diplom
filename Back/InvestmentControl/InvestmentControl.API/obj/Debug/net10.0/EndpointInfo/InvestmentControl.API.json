@@ -15,7 +15,6 @@
           {
             "name": "CategoryId",
             "in": "query",
-            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -58,8 +57,6 @@
             "name": "RankMin",
             "in": "query",
             "schema": {
-              "maximum": 1.7976931348623157E+308,
-              "minimum": 0,
               "type": "number",
               "format": "double"
             }
@@ -68,8 +65,6 @@
             "name": "RankMax",
             "in": "query",
             "schema": {
-              "maximum": 1.7976931348623157E+308,
-              "minimum": 0,
               "type": "number",
               "format": "double"
             }
@@ -244,6 +239,63 @@
           }
         }
       },
+      "put": {
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTemplateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTemplateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTemplateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDto"
+                }
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Analytics"
@@ -330,14 +382,6 @@
                 "type": "integer",
                 "format": "int32"
               }
-            }
-          },
-          {
-            "name": "BudgetFieldId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
             }
           }
         ],
@@ -598,7 +642,24 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvestmentDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvestmentDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvestmentDto"
+                }
+              }
+            }
           }
         }
       },
@@ -770,7 +831,24 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostDto"
+                }
+              }
+            }
           }
         }
       },
@@ -942,7 +1020,24 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressReportDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressReportDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressReportDto"
+                }
+              }
+            }
           }
         }
       },
@@ -1217,24 +1312,14 @@
         "additionalProperties": false
       },
       "SaveTemplateRequest": {
-        "required": [
-          "filtersJson",
-          "name"
-        ],
         "type": "object",
         "properties": {
           "name": {
-            "maxLength": 100,
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "filtersJson": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "templateId": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "nullable": true
           }
         },
@@ -1296,6 +1381,20 @@
             "items": {
               "$ref": "#/components/schemas/TemplateDto"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateTemplateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "filtersJson": {
+            "type": "string",
             "nullable": true
           }
         },

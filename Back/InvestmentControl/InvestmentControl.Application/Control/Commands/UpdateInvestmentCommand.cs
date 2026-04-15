@@ -1,12 +1,13 @@
 ﻿using InvestmentControl.Application.Common.Exceptions;
 using InvestmentControl.Application.Common.Interfaces;
+using InvestmentControl.Application.Control.DTOs;
 using InvestmentControl.Domain.Interfaces;
 using InvestmentControl.Domain.Models;
 using MediatR;
 
 namespace InvestmentControl.Application.Control.Commands;
 
-public class UpdateInvestmentCommand : IRequest
+public class UpdateInvestmentCommand : IRequest<InvestmentDto>
 {
     public int Id { get; set; }
     public decimal? PlannedAmount { get; set; }
@@ -15,38 +16,93 @@ public class UpdateInvestmentCommand : IRequest
     public DateTime? ActualDate { get; set; }
 }
 
-public class UpdateInvestmentCommandHandler : IRequestHandler<UpdateInvestmentCommand>
+public class UpdateInvestmentCommandHandler : IRequestHandler<UpdateInvestmentCommand, InvestmentDto>
 {
     private readonly IInvestmentRepository _investmentRepository;
     private readonly IProjectReadRepository _projectReadRepository;
     private readonly ICurrentUser _currentUser;
 
-    public UpdateInvestmentCommandHandler(IInvestmentRepository investmentRepository, IProjectReadRepository projectReadRepository, ICurrentUser currentUser)
+    public UpdateInvestmentCommandHandler(
+        IInvestmentRepository investmentRepository,
+        IProjectReadRepository projectReadRepository,
+        ICurrentUser currentUser)
     {
         _investmentRepository = investmentRepository;
         _projectReadRepository = projectReadRepository;
         _currentUser = currentUser;
     }
 
-    public async Task Handle(UpdateInvestmentCommand request, CancellationToken cancellationToken)
+    public async Task<InvestmentDto> Handle(UpdateInvestmentCommand request, CancellationToken cancellationToken)
     {
-        if (_currentUser.Role != "Investor")
-            throw new ForbiddenAccessException("Только инвестор может изменять инвестиции.");
+        if (request.PlannedDate.HasValue && !request.PlannedAmount.HasValue)
+            throw new ArgumentException("Для плановой даты необходимо указать плановую сумму.");
+        if (request.ActualDate.HasValue && !request.ActualAmount.HasValue)
+            throw new ArgumentException("Для фактической даты необходимо указать фактическую сумму.");
+
+        if (request.Id <= 0)
+            throw new ArgumentException("ID инвестиции должен быть положительным.");
+
+        if (_currentUser.Role != "Investor" && _currentUser.Role != "Admin")
+            throw new ForbiddenAccessException("Только инвестор или администратор может изменять инвестиции.");
 
         var investment = await _investmentRepository.GetByIdAsync(request.Id, cancellationToken);
         if (investment == null)
-            throw new NotFoundException(nameof(Investment), request.Id);
+            throw new NotFoundException("Investment", request.Id);
 
         if (!await _projectReadRepository.ExistsAsync(investment.ProjectId, cancellationToken))
             throw new NotFoundException("Project", investment.ProjectId);
 
-        // Опционально проверяем статус проекта (можно убрать, если не нужно)
         var status = await _projectReadRepository.GetStatusAsync(investment.ProjectId, cancellationToken);
-        if (status != "Активен" && status != "Завершен")
-            throw new ArgumentException("Инвестиции можно изменять только для активных или завершённых проектов.");
+        if (status != "Активен")
+            throw new ArgumentException("Инвестиции можно изменять только для активных проектов.");
+
+        // Проверки дат
+        if (request.PlannedDate.HasValue && request.ActualDate.HasValue && request.ActualDate < request.PlannedDate)
+            throw new ArgumentException("Фактическая дата не может быть раньше плановой.");
+
+        if (request.PlannedAmount.HasValue && !request.PlannedDate.HasValue)
+            throw new ArgumentException("Для плановой суммы необходимо указать плановую дату.");
+        if (request.ActualAmount.HasValue && !request.ActualDate.HasValue)
+            throw new ArgumentException("Для фактической суммы необходимо указать фактическую дату.");
+
+        var publishedAt = await _projectReadRepository.GetPublishedAtAsync(investment.ProjectId, cancellationToken);
+        if (request.PlannedDate.HasValue && request.PlannedDate < publishedAt)
+            throw new ArgumentException("Плановая дата не может быть раньше даты публикации проекта.");
+        if (request.ActualDate.HasValue && request.ActualDate < publishedAt)
+            throw new ArgumentException("Фактическая дата не может быть раньше даты публикации проекта.");
+
+        // Бюджет с учётом других инвестиций
+        var budget = await _projectReadRepository.GetBudgetAsync(investment.ProjectId, cancellationToken) ?? 0;
+        var allInvestments = await _investmentRepository.GetByProjectIdAsync(investment.ProjectId, cancellationToken);
+        var otherInvestments = allInvestments.Where(i => i.Id != request.Id).ToList();
+
+        var currentActualSum = otherInvestments.Where(i => i.ActualAmount.HasValue).Sum(i => i.ActualAmount.Value);
+        var currentPlannedSum = otherInvestments.Where(i => i.PlannedAmount.HasValue).Sum(i => i.PlannedAmount.Value);
+
+        if (request.ActualAmount.HasValue)
+        {
+            var newActualSum = currentActualSum + request.ActualAmount.Value;
+            if (newActualSum > budget)
+                throw new ArgumentException($"Сумма фактических инвестиций превышает бюджет на {newActualSum - budget}.");
+        }
+        if (request.PlannedAmount.HasValue)
+        {
+            var newPlannedSum = currentPlannedSum + request.PlannedAmount.Value;
+            if (newPlannedSum > budget)
+                throw new ArgumentException($"Сумма плановых инвестиций превышает бюджет на {newPlannedSum - budget}.");
+        }
 
         investment.Update(request.PlannedAmount, request.PlannedDate, request.ActualAmount, request.ActualDate);
         _investmentRepository.Update(investment);
         await _investmentRepository.SaveChangesAsync(cancellationToken);
+
+        return new InvestmentDto
+        {
+            Id = investment.Id,
+            PlannedAmount = investment.PlannedAmount,
+            PlannedDate = investment.PlannedDate,
+            ActualAmount = investment.ActualAmount,
+            ActualDate = investment.ActualDate
+        };
     }
 }

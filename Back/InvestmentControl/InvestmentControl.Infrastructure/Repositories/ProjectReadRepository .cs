@@ -99,18 +99,19 @@ public class ProjectReadRepository : IProjectReadRepository
         List<int>? statusIds,
         List<int>? directionIds,
         List<int>? categoryIds,
-        int? budgetFieldId,
         CancellationToken cancellationToken)
     {
         var query = _readOnlyContext.Projects.AsQueryable();
 
         if (departmentIds != null && departmentIds.Any())
             query = query.Where(p => departmentIds.Contains(p.DepartmentId));
-        // ИЗМЕНЕНО: фильтр по дате публикации
+
+        // Фильтр по дате публикации
         if (dateFrom.HasValue)
             query = query.Where(p => p.PublishedAt >= dateFrom.Value);
         if (dateTo.HasValue)
             query = query.Where(p => p.PublishedAt <= dateTo.Value);
+
         if (statusIds != null && statusIds.Any())
             query = query.Where(p => p.StatusId.HasValue && statusIds.Contains(p.StatusId.Value));
         if (directionIds != null && directionIds.Any())
@@ -125,31 +126,14 @@ public class ProjectReadRepository : IProjectReadRepository
         var departmentNames = await _readOnlyContext.Departments
             .ToDictionaryAsync(d => d.Id, d => d.Name, cancellationToken);
 
-        Dictionary<int, decimal?> budgets = new();
-        if (budgetFieldId.HasValue)
-        {
-            var budgetChar = await _readOnlyContext.Characteristics
-                .FirstOrDefaultAsync(ch => ch.Id == budgetFieldId.Value, cancellationToken);
-            if (budgetChar != null)
-            {
-                var categoryCharacteristics = await _readOnlyContext.CategoryCharacteristics
-                    .Where(cc => cc.CharacteristicId == budgetFieldId.Value)
-                    .ToListAsync(cancellationToken);
-                var ccIds = categoryCharacteristics.Select(cc => cc.Id).ToList();
-                var values = await _readOnlyContext.ProjectCharacteristicValues
-                    .Where(pcv => ccIds.Contains(pcv.CategoryCharacteristicId))
-                    .ToListAsync(cancellationToken);
-                budgets = values.ToDictionary(v => v.ProjectId, v => v.Value);
-            }
-        }
-
+        // Используем поле Budget из таблицы проектов (без дополнительных характеристик)
         var grouped = projects.GroupBy(p => p.DepartmentId)
             .Select(g => new DepartmentSummaryReadModel
             {
                 DepartmentId = g.Key,
                 DepartmentName = departmentNames.GetValueOrDefault(g.Key, "Неизвестно"),
                 ProjectCount = g.Count(),
-                TotalBudget = g.Sum(p => budgets.TryGetValue(p.Id, out var b) ? (b ?? 0) : (p.Budget ?? 0))
+                TotalBudget = g.Sum(p => p.Budget ?? 0)
             })
             .OrderBy(d => d.DepartmentName)
             .ToList();
@@ -166,14 +150,21 @@ public class ProjectReadRepository : IProjectReadRepository
         string? sort,
         CancellationToken cancellationToken)
     {
+        // Получаем ID статусов "Активен" и "Завершен"
         var activeStatusId = await _readOnlyContext.Statuses
             .Where(s => s.Name == "Активен")
             .Select(s => s.Id)
             .FirstOrDefaultAsync(cancellationToken);
+        var completedStatusId = await _readOnlyContext.Statuses
+            .Where(s => s.Name == "Завершен")
+            .Select(s => s.Id)
+            .FirstOrDefaultAsync(cancellationToken);
 
-        var query = _readOnlyContext.Projects.AsQueryable();
-        if (activeStatusId != 0)
-            query = query.Where(p => p.StatusId == activeStatusId);
+        var allowedStatusIds = new List<int>();
+        if (activeStatusId != 0) allowedStatusIds.Add(activeStatusId);
+        if (completedStatusId != 0) allowedStatusIds.Add(completedStatusId);
+
+        var query = _readOnlyContext.Projects.Where(p => allowedStatusIds.Contains(p.StatusId ?? 0));
 
         if (!string.IsNullOrEmpty(search))
             query = query.Where(p => p.Name.Contains(search));
@@ -221,29 +212,33 @@ public class ProjectReadRepository : IProjectReadRepository
             StartDate = p.PublishedAt ?? p.CreatedAt
         }).ToList();
 
-        // Валидация параметра sort
-        var allowedSortValues = new[] { "date_desc", "name_asc", "progress_desc", "progress_asc" };
+        // Валидация параметра sort – расширенный список
+        var allowedSortValues = new[] { "date_desc", "name_asc", "name_desc", "progress_desc", "progress_asc", "budget_desc", "budget_asc", "invested_desc", "invested_asc" };
         if (!string.IsNullOrEmpty(sort) && !allowedSortValues.Contains(sort))
             throw new ArgumentException($"Недопустимое значение sort. Допустимы: {string.Join(", ", allowedSortValues)}");
 
         result = sort switch
         {
             "name_asc" => result.OrderBy(r => r.Name).ToList(),
+            "name_desc" => result.OrderByDescending(r => r.Name).ToList(),
             "progress_desc" => result.OrderByDescending(r => r.Progress).ToList(),
             "progress_asc" => result.OrderBy(r => r.Progress).ToList(),
+            "budget_desc" => result.OrderByDescending(r => r.Budget).ToList(),
+            "budget_asc" => result.OrderBy(r => r.Budget).ToList(),
+            "invested_desc" => result.OrderByDescending(r => r.Invested).ToList(),
+            "invested_asc" => result.OrderBy(r => r.Invested).ToList(),
             _ => result.OrderByDescending(r => r.StartDate).ToList() // date_desc
         };
 
         return result;
     }
 
-    // ДОБАВЛЕНО: проверка существования проекта
+    // Вспомогательные методы
     public async Task<bool> ExistsAsync(int projectId, CancellationToken cancellationToken)
     {
         return await _readOnlyContext.Projects.AnyAsync(p => p.Id == projectId, cancellationToken);
     }
 
-    // ДОБАВЛЕНО: получение статуса проекта
     public async Task<string?> GetStatusAsync(int projectId, CancellationToken cancellationToken)
     {
         var project = await _readOnlyContext.Projects
@@ -252,7 +247,6 @@ public class ProjectReadRepository : IProjectReadRepository
         return project?.Status?.Name;
     }
 
-    // ДОБАВЛЕНО: получение ID создателя проекта
     public async Task<int?> GetCreatorUserIdAsync(int projectId, CancellationToken cancellationToken)
     {
         var project = await _readOnlyContext.Projects
@@ -260,5 +254,35 @@ public class ProjectReadRepository : IProjectReadRepository
             .Select(p => p.CreatedByUserId)
             .FirstOrDefaultAsync(cancellationToken);
         return project == 0 ? null : project;
+    }
+
+    public async Task<DateTime?> GetPublishedAtAsync(int projectId, CancellationToken cancellationToken)
+    {
+        var project = await _readOnlyContext.Projects
+            .Where(p => p.Id == projectId)
+            .Select(p => p.PublishedAt)
+            .FirstOrDefaultAsync(cancellationToken);
+        return project;
+    }
+
+    public async Task<decimal?> GetBudgetAsync(int projectId, CancellationToken cancellationToken)
+    {
+        var project = await _readOnlyContext.Projects
+            .Where(p => p.Id == projectId)
+            .Select(p => p.Budget)
+            .FirstOrDefaultAsync(cancellationToken);
+        return project;
+    }
+
+    public async Task<int?> GetStatusIdByNameAsync(string name, CancellationToken cancellationToken)
+    {
+        var status = await _readOnlyContext.Statuses
+            .FirstOrDefaultAsync(s => s.Name == name, cancellationToken);
+        return status?.Id;
+    }
+
+    public async Task<List<int>> GetAllStatusIdsAsync(CancellationToken cancellationToken)
+    {
+        return await _readOnlyContext.Statuses.Select(s => s.Id).ToListAsync(cancellationToken);
     }
 }

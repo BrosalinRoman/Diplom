@@ -19,7 +19,10 @@ public class AddProgressReportCommandHandler : IRequestHandler<AddProgressReport
     private readonly IProjectReadRepository _projectReadRepository;
     private readonly ICurrentUser _currentUser;
 
-    public AddProgressReportCommandHandler(IProgressReportRepository progressReportRepository, IProjectReadRepository projectReadRepository, ICurrentUser currentUser)
+    public AddProgressReportCommandHandler(
+        IProgressReportRepository progressReportRepository,
+        IProjectReadRepository projectReadRepository,
+        ICurrentUser currentUser)
     {
         _progressReportRepository = progressReportRepository;
         _projectReadRepository = projectReadRepository;
@@ -28,19 +31,33 @@ public class AddProgressReportCommandHandler : IRequestHandler<AddProgressReport
 
     public async Task<int> Handle(AddProgressReportCommand request, CancellationToken cancellationToken)
     {
-        if (_currentUser.Role != "Applicant")
-            throw new ForbiddenAccessException("Только заявитель может добавлять отчёты.");
+        if (request.ProjectId <= 0)
+            throw new ArgumentException("ID проекта должен быть положительным.");
+
+        if (_currentUser.Role != "Applicant" && _currentUser.Role != "Admin")
+            throw new ForbiddenAccessException("Только заявитель или администратор может добавлять отчёты.");
 
         if (!await _projectReadRepository.ExistsAsync(request.ProjectId, cancellationToken))
             throw new NotFoundException("Project", request.ProjectId);
 
-        var creatorId = await _projectReadRepository.GetCreatorUserIdAsync(request.ProjectId, cancellationToken);
-        if (creatorId != _currentUser.UserId)
-            throw new ForbiddenAccessException("Вы можете добавлять отчёты только для своих проектов.");
+        if (_currentUser.Role == "Applicant")
+        {
+            var creatorId = await _projectReadRepository.GetCreatorUserIdAsync(request.ProjectId, cancellationToken);
+            if (creatorId != _currentUser.UserId)
+                throw new ForbiddenAccessException("Вы можете добавлять отчёты только для своих проектов.");
+        }
 
         var status = await _projectReadRepository.GetStatusAsync(request.ProjectId, cancellationToken);
         if (status != "Активен" && status != "Завершен")
-            throw new ArgumentException("Отчёты можно добавлять только для активных или завершённых проектов.");
+            throw new ArgumentException("Затраты/отчёты можно добавлять только для активных или завершённых проектов.");
+
+        // Проверка прогресса
+        var existingReports = await _progressReportRepository.GetByProjectIdAsync(request.ProjectId, cancellationToken);
+        var maxProgress = existingReports.Any() ? existingReports.Max(r => r.ProgressPercentage) : 0;
+        if (request.ProgressPercentage <= maxProgress)
+            throw new ArgumentException($"Новый прогресс ({request.ProgressPercentage}%) должен быть больше предыдущего ({maxProgress}%).");
+        if (request.ProgressPercentage < 1 || request.ProgressPercentage > 100)
+            throw new ArgumentException("Прогресс должен быть в диапазоне от 1 до 100.");
 
         var report = new ProgressReport(request.ProjectId, request.Description, request.ProgressPercentage);
         await _progressReportRepository.AddAsync(report, cancellationToken);

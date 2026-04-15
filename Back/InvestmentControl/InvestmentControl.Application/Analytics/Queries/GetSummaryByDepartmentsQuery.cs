@@ -1,5 +1,6 @@
 ﻿using InvestmentControl.Application.Analytics.DTOs;
 using InvestmentControl.Application.Common.Exceptions;
+using InvestmentControl.Application.Common.Helpers;
 using InvestmentControl.Application.Common.Interfaces;
 using InvestmentControl.Domain.Interfaces;
 using MediatR;
@@ -14,7 +15,6 @@ public class GetSummaryByDepartmentsQuery : IRequest<List<DepartmentSummaryDto>>
     public List<int>? StatusIds { get; set; }
     public List<int>? DirectionIds { get; set; }
     public List<int>? CategoryIds { get; set; }
-    public int? BudgetFieldId { get; set; } // ID характеристики, используемой как бюджет
 }
 
 public class GetSummaryByDepartmentsQueryHandler : IRequestHandler<GetSummaryByDepartmentsQuery, List<DepartmentSummaryDto>>
@@ -30,28 +30,56 @@ public class GetSummaryByDepartmentsQueryHandler : IRequestHandler<GetSummaryByD
 
     public async Task<List<DepartmentSummaryDto>> Handle(GetSummaryByDepartmentsQuery request, CancellationToken cancellationToken)
     {
-        // ИЗМЕНЕНО: доступ для Investor или Admin
-        if (_currentUser.Role != "Investor" && _currentUser.Role != "Admin")
-            throw new ForbiddenAccessException("Только инвестор или администратор может просматривать сводку по подразделениям.");
+        ValidationHelper.EnsurePositiveIds(request.DepartmentIds, nameof(request.DepartmentIds));
+        ValidationHelper.EnsurePositiveIds(request.StatusIds, nameof(request.StatusIds));
+        ValidationHelper.EnsurePositiveIds(request.DirectionIds, nameof(request.DirectionIds));
+        ValidationHelper.EnsurePositiveIds(request.CategoryIds, nameof(request.CategoryIds));
 
-        var summaryReadModels = await _projectReadRepository.GetDepartmentSummaryAsync(
+        if (_currentUser.Role != "Investor" && _currentUser.Role != "Admin")
+            throw new ForbiddenAccessException("Только инвестор или администратор может просматривать сводку.");
+
+        if (request.DateFrom.HasValue && request.DateTo.HasValue && request.DateFrom > request.DateTo)
+            throw new ArgumentException("DateFrom не может быть позже DateTo.");
+
+        // Получаем ID статуса "Черновик"
+        var draftStatusId = await _projectReadRepository.GetStatusIdByNameAsync("Черновик", cancellationToken);
+
+        // Если черновик явно выбран в фильтре – ошибка
+        if (request.StatusIds != null && draftStatusId.HasValue && request.StatusIds.Contains(draftStatusId.Value))
+            throw new ArgumentException("Статус 'Черновик' не может быть использован в сводке.");
+
+        // Формируем список разрешённых статусов
+        List<int> allowedStatusIds;
+        if (request.StatusIds == null || !request.StatusIds.Any())
+        {
+            // Если статусы не указаны – берём все статусы, кроме черновика
+            var allStatuses = await _projectReadRepository.GetAllStatusIdsAsync(cancellationToken);
+            allowedStatusIds = allStatuses.Where(id => id != draftStatusId).ToList();
+        }
+        else
+        {
+            allowedStatusIds = request.StatusIds.Where(id => id != draftStatusId).ToList();
+        }
+
+        // Если после исключения черновика список пуст – возвращаем пустой результат
+        if (!allowedStatusIds.Any())
+            return new List<DepartmentSummaryDto>();
+
+        var summary = await _projectReadRepository.GetDepartmentSummaryAsync(
             request.DepartmentIds,
             request.DateFrom,
             request.DateTo,
-            request.StatusIds,
+            allowedStatusIds,
             request.DirectionIds,
             request.CategoryIds,
-            request.BudgetFieldId,
             cancellationToken);
 
-        var result = summaryReadModels.Select(s => new DepartmentSummaryDto
+        return summary.Select(s => new DepartmentSummaryDto
         {
             DepartmentId = s.DepartmentId,
             DepartmentName = s.DepartmentName,
             ProjectCount = s.ProjectCount,
             TotalBudget = s.TotalBudget
         }).ToList();
-
-        return result;
     }
 }

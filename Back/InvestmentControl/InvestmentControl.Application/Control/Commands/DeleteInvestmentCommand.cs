@@ -17,7 +17,10 @@ public class DeleteInvestmentCommandHandler : IRequestHandler<DeleteInvestmentCo
     private readonly IProjectReadRepository _projectReadRepository;
     private readonly ICurrentUser _currentUser;
 
-    public DeleteInvestmentCommandHandler(IInvestmentRepository investmentRepository, IProjectReadRepository projectReadRepository, ICurrentUser currentUser)
+    public DeleteInvestmentCommandHandler(
+        IInvestmentRepository investmentRepository,
+        IProjectReadRepository projectReadRepository,
+        ICurrentUser currentUser)
     {
         _investmentRepository = investmentRepository;
         _projectReadRepository = projectReadRepository;
@@ -26,16 +29,19 @@ public class DeleteInvestmentCommandHandler : IRequestHandler<DeleteInvestmentCo
 
     public async Task Handle(DeleteInvestmentCommand request, CancellationToken cancellationToken)
     {
-        if (_currentUser.Role != "Investor")
-            throw new ForbiddenAccessException("Только инвестор может удалять инвестиции.");
+        if (request.Id <= 0)
+            throw new ArgumentException("ID инвестиции должен быть положительным.");
+
+        if (_currentUser.Role != "Investor" && _currentUser.Role != "Admin")
+            throw new ForbiddenAccessException("Только инвестор или администратор может удалять инвестиции.");
 
         var investment = await _investmentRepository.GetByIdAsync(request.Id, cancellationToken);
         if (investment == null)
-            throw new NotFoundException(nameof(Investment), request.Id);
+            throw new NotFoundException("Investment", request.Id);
 
-        // Проверяем существование проекта (опционально)
-        if (!await _projectReadRepository.ExistsAsync(investment.ProjectId, cancellationToken))
-            throw new NotFoundException("Project", investment.ProjectId);
+        var status = await _projectReadRepository.GetStatusAsync(investment.ProjectId, cancellationToken);
+        if (status != "Активен")
+            throw new ArgumentException("Инвестиции можно удалять только для активных проектов.");
 
         _investmentRepository.Delete(investment);
         await _investmentRepository.SaveChangesAsync(cancellationToken);

@@ -102,11 +102,6 @@
         "Name": "CategoryIds",
         "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
-      },
-      {
-        "Name": "BudgetFieldId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -143,7 +138,7 @@
   },
   {
     "ContainingType": "InvestmentControl.API.Controllers.AnalyticsController",
-    "Method": "SaveTemplate",
+    "Method": "CreateTemplate",
     "RelativePath": "api/Analytics/templates",
     "HttpMethod": "POST",
     "IsController": true,
@@ -195,6 +190,37 @@
   },
   {
     "ContainingType": "InvestmentControl.API.Controllers.AnalyticsController",
+    "Method": "UpdateTemplate",
+    "RelativePath": "api/Analytics/templates/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "InvestmentControl.API.DTOs.Requests.UpdateTemplateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "InvestmentControl.Application.Analytics.DTOs.TemplateDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "InvestmentControl.API.Controllers.AnalyticsController",
     "Method": "DeleteTemplate",
     "RelativePath": "api/Analytics/templates/{id}",
     "HttpMethod": "DELETE",
@@ -228,7 +254,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "InvestmentControl.Application.Control.DTOs.CostDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "InvestmentControl.API.Controllers.ControlController",
@@ -265,7 +301,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "InvestmentControl.Application.Control.DTOs.InvestmentDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "InvestmentControl.API.Controllers.ControlController",
@@ -302,7 +348,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "InvestmentControl.Application.Control.DTOs.ProgressReportDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "InvestmentControl.API.Controllers.ControlController",

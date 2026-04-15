@@ -32,7 +32,7 @@ public class AnalyticsController : ControllerBase
             StatusIds = request.StatusIds,
             RankMin = request.RankMin,
             RankMax = request.RankMax,
-            ExcludedProjectIds = request.ProjectIds, // ИЗМЕНЕНО: теперь исключение
+            ExcludedProjectIds = request.ProjectIds,
             SelectedFields = request.SelectedFields,
             Search = request.Search
         };
@@ -48,7 +48,6 @@ public class AnalyticsController : ControllerBase
         return Ok(new TemplateListResponse { Templates = templates });
     }
 
-    // ДОБАВЛЕНО: получение шаблона по ID
     [HttpGet("templates/{id}")]
     public async Task<ActionResult<TemplateDto>> GetTemplate(int id)
     {
@@ -57,18 +56,31 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpPost("templates")]
-    public async Task<ActionResult<int>> SaveTemplate([FromBody] SaveTemplateRequest request)
+    public async Task<ActionResult<int>> CreateTemplate([FromBody] SaveTemplateRequest request)
     {
+        if (string.IsNullOrWhiteSpace(request.FiltersJson))
+            request.FiltersJson = "{\"categoryId\": 1}";
+
         var command = new SaveTemplateCommand
         {
             Name = request.Name,
-            FiltersJson = request.FiltersJson,
-            TemplateId = request.TemplateId
+            FiltersJson = request.FiltersJson
         };
         var id = await _mediator.Send(command);
-
-        // ИЗМЕНЕНО: возвращаем 201 Created
         return CreatedAtAction(nameof(GetTemplate), new { id }, id);
+    }
+
+    [HttpPut("templates/{id}")]
+    public async Task<ActionResult<TemplateDto>> UpdateTemplate(int id, [FromBody] UpdateTemplateRequest request)
+    {
+        var command = new UpdateTemplateCommand
+        {
+            Id = id,
+            Name = request.Name,
+            FiltersJson = request.FiltersJson
+        };
+        var template = await _mediator.Send(command);
+        return Ok(template);
     }
 
     [HttpDelete("templates/{id}")]
@@ -88,12 +100,10 @@ public class AnalyticsController : ControllerBase
             DateTo = request.DateTo,
             StatusIds = request.StatusIds,
             DirectionIds = request.DirectionIds,
-            CategoryIds = request.CategoryIds,
-            BudgetFieldId = request.BudgetFieldId
+            CategoryIds = request.CategoryIds
         };
         var departments = await _mediator.Send(query);
 
-        // ИЗМЕНЕНО: формируем SummaryResponse с итогами
         var response = new SummaryResponse
         {
             Departments = departments,

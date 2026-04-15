@@ -3,32 +3,80 @@
   "WorkspaceRootPath": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\common\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\common\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\analytics\\queries\\getprojectsanalyticsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\analytics\\queries\\getprojectsanalyticsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\dtos\\requests\\analyticsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\dtos\\requests\\analyticsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\analytics\\queries\\gettemplatebyidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\analytics\\queries\\gettemplatebyidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\dtos\\requests\\savetemplaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\dtos\\requests\\savetemplaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\analytics\\commands\\updatetemplatecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\analytics\\commands\\updatetemplatecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\analytics\\commands\\savetemplatecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\analytics\\commands\\savetemplatecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\dtos\\requests\\updatetemplaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\dtos\\requests\\updatetemplaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\analytics\\queries\\getsummarybydepartmentsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\analytics\\queries\\getsummarybydepartmentsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\deleteinvestmentcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\deleteinvestmentcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.infrastructure\\repositories\\projectreadrepository .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|solutionrelative:investmentcontrol.infrastructure\\repositories\\projectreadrepository .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.domain\\interfaces\\iprojectreadrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|solutionrelative:investmentcontrol.domain\\interfaces\\iprojectreadrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\common\\helpers\\validationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\common\\helpers\\validationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\updateprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\updateprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\updatecostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\updatecostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\addcostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\addcostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\addprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\addprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\queries\\getprogressreportsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\queries\\getprogressreportsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\queries\\getinvestmentsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\queries\\getinvestmentsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\queries\\getcontrolprojectsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\queries\\getcontrolprojectsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\queries\\getcostsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\queries\\getcostsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\updateinvestmentcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,72 +87,12 @@
       "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\addinvestmentcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\deleteprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\deleteprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\controllers\\controlcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\controllers\\controlcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\updateprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\updateprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\addprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\addprogressreportcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\deletecostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\deletecostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\updatecostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\updatecostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\control\\commands\\addcostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\control\\commands\\addcostcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.domain\\models\\investment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|solutionrelative:investmentcontrol.domain\\models\\investment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.domain\\models\\progressreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|solutionrelative:investmentcontrol.domain\\models\\progressreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.domain\\models\\cost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|solutionrelative:investmentcontrol.domain\\models\\cost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.infrastructure\\repositories\\templaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|solutionrelative:investmentcontrol.infrastructure\\repositories\\templaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.domain\\interfaces\\itemplaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|solutionrelative:investmentcontrol.domain\\interfaces\\itemplaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.domain\\interfaces\\iprojectreadrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09D4927A-22C1-CA99-8343-CE7CFBEF7370}|InvestmentControl.Domain\\InvestmentControl.Domain.csproj|solutionrelative:investmentcontrol.domain\\interfaces\\iprojectreadrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.infrastructure\\repositories\\projectreadrepository .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|solutionrelative:investmentcontrol.infrastructure\\repositories\\projectreadrepository .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.application\\analytics\\queries\\getprojectsanalyticsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1AA1E93-88DB-ABDF-72BE-E991FAF593B6}|InvestmentControl.Application\\InvestmentControl.Application.csproj|solutionrelative:investmentcontrol.application\\analytics\\queries\\getprojectsanalyticsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\dtos\\requests\\savetemplaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\dtos\\requests\\savetemplaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.api\\dtos\\requests\\analyticsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD7D5A68-E73E-4CB5-ACD8-158B3E941AD6}|InvestmentControl.API\\InvestmentControl.API.csproj|solutionrelative:investmentcontrol.api\\dtos\\requests\\analyticsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|d:\\diplom\\diplomreact\\back\\investmentcontrol\\investmentcontrol.infrastructure\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFBE98B9-BA1F-D8AC-AED8-7097C9F24808}|InvestmentControl.Infrastructure\\InvestmentControl.Infrastructure.csproj|solutionrelative:investmentcontrol.infrastructure\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -113,7 +101,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 110,
+          "DockedWidth": 123,
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -123,280 +111,266 @@
           ]
         },
         {
-          "DockedWidth": 170,
-          "SelectedChildIndex": 12,
+          "DockedWidth": 187,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "AnalyticsRequest.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\AnalyticsRequest.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.API\\DTOs\\Requests\\AnalyticsRequest.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\AnalyticsRequest.cs",
-              "RelativeToolTip": "InvestmentControl.API\\DTOs\\Requests\\AnalyticsRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "DocumentIndex": 22,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Infrastructure\\Repositories\\GenericRepository.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\GenericRepository.cs",
+              "RelativeToolTip": "InvestmentControl.Infrastructure\\Repositories\\GenericRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T21:49:57.531Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-10T20:33:24.814Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "SaveTemplateRequest.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\SaveTemplateRequest.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.API\\DTOs\\Requests\\SaveTemplateRequest.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\SaveTemplateRequest.cs",
-              "RelativeToolTip": "InvestmentControl.API\\DTOs\\Requests\\SaveTemplateRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T21:53:27.01Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 12,
               "Title": "AnalyticsController.cs",
               "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Controllers\\AnalyticsController.cs",
               "RelativeDocumentMoniker": "InvestmentControl.API\\Controllers\\AnalyticsController.cs",
               "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Controllers\\AnalyticsController.cs",
               "RelativeToolTip": "InvestmentControl.API\\Controllers\\AnalyticsController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAYwGgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAkwF8AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T21:53:53.493Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "GetProjectsAnalyticsQuery.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetProjectsAnalyticsQuery.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Analytics\\Queries\\GetProjectsAnalyticsQuery.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetProjectsAnalyticsQuery.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Analytics\\Queries\\GetProjectsAnalyticsQuery.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAUwEEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T21:56:38.823Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GetTemplateByIdQuery.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetTemplateByIdQuery.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Analytics\\Queries\\GetTemplateByIdQuery.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetTemplateByIdQuery.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Analytics\\Queries\\GetTemplateByIdQuery.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAAB0AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:00:51.029Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SaveTemplateCommand.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Commands\\SaveTemplateCommand.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Analytics\\Commands\\SaveTemplateCommand.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Commands\\SaveTemplateCommand.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Analytics\\Commands\\SaveTemplateCommand.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwCkAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:03:11.784Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GetSummaryByDepartmentsQuery.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetSummaryByDepartmentsQuery.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Analytics\\Queries\\GetSummaryByDepartmentsQuery.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetSummaryByDepartmentsQuery.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Analytics\\Queries\\GetSummaryByDepartmentsQuery.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAywCIAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:04:14.273Z",
+              "WhenOpened": "2026-04-09T12:06:39.006Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 21,
-              "Title": "ProjectReadRepository .cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\ProjectReadRepository .cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Infrastructure\\Repositories\\ProjectReadRepository .cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\ProjectReadRepository .cs",
-              "RelativeToolTip": "InvestmentControl.Infrastructure\\Repositories\\ProjectReadRepository .cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcBAAABAAAAAAAAAA==",
+              "Title": "ControlController.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Controllers\\ControlController.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.API\\Controllers\\ControlController.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Controllers\\ControlController.cs",
+              "RelativeToolTip": "InvestmentControl.API\\Controllers\\ControlController.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAA/wJQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:05:11.903Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "IProjectReadRepository.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Interfaces\\IProjectReadRepository.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Domain\\Interfaces\\IProjectReadRepository.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Interfaces\\IProjectReadRepository.cs",
-              "RelativeToolTip": "InvestmentControl.Domain\\Interfaces\\IProjectReadRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:05:28.274Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "ITemplateRepository.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Interfaces\\ITemplateRepository.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Domain\\Interfaces\\ITemplateRepository.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Interfaces\\ITemplateRepository.cs",
-              "RelativeToolTip": "InvestmentControl.Domain\\Interfaces\\ITemplateRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAB0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:06:19.613Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "TemplateRepository.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\TemplateRepository.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Infrastructure\\Repositories\\TemplateRepository.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\TemplateRepository.cs",
-              "RelativeToolTip": "InvestmentControl.Infrastructure\\Repositories\\TemplateRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:07:27.032Z",
+              "WhenOpened": "2026-04-09T13:54:08.913Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ExceptionHandlingMiddleware.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "RelativeToolTip": "InvestmentControl.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAwEAAAAAWAAAAAAAAAA==",
+              "Title": "AnalyticsRequest.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\AnalyticsRequest.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.API\\DTOs\\Requests\\AnalyticsRequest.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\AnalyticsRequest.cs",
+              "RelativeToolTip": "InvestmentControl.API\\DTOs\\Requests\\AnalyticsRequest.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAADwvwgAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:08:14.386Z",
+              "WhenOpened": "2026-04-10T22:55:39.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SaveTemplateRequest.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\SaveTemplateRequest.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.API\\DTOs\\Requests\\SaveTemplateRequest.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\SaveTemplateRequest.cs",
+              "RelativeToolTip": "InvestmentControl.API\\DTOs\\Requests\\SaveTemplateRequest.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAIwAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T23:04:40.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UpdateTemplateRequest.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\UpdateTemplateRequest.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.API\\DTOs\\Requests\\UpdateTemplateRequest.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\DTOs\\Requests\\UpdateTemplateRequest.cs",
+              "RelativeToolTip": "InvestmentControl.API\\DTOs\\Requests\\UpdateTemplateRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T23:05:03.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ValidationHelper.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Common\\Helpers\\ValidationHelper.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Common\\Helpers\\ValidationHelper.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Common\\Helpers\\ValidationHelper.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Common\\Helpers\\ValidationHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T16:57:18.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GetSummaryByDepartmentsQuery.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetSummaryByDepartmentsQuery.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Analytics\\Queries\\GetSummaryByDepartmentsQuery.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetSummaryByDepartmentsQuery.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Analytics\\Queries\\GetSummaryByDepartmentsQuery.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAIAwwDAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T16:58:22.021Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ValidationBehavior.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Common\\Behaviors\\ValidationBehavior.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Common\\Behaviors\\ValidationBehavior.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Common\\Behaviors\\ValidationBehavior.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Common\\Behaviors\\ValidationBehavior.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
+              "Title": "GetProjectsAnalyticsQuery.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetProjectsAnalyticsQuery.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Analytics\\Queries\\GetProjectsAnalyticsQuery.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Queries\\GetProjectsAnalyticsQuery.cs*",
+              "RelativeToolTip": "InvestmentControl.Application\\Analytics\\Queries\\GetProjectsAnalyticsQuery.cs*",
+              "ViewState": "AgIAABwAAAAAAAAAAAAcwC8AAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:35:45.935Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Program.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.API\\Program.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.API\\Program.cs",
-              "RelativeToolTip": "InvestmentControl.API\\Program.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAAAGYAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:08:56.059Z",
+              "WhenOpened": "2026-04-15T16:57:52.691Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
-              "Title": "Cost.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Models\\Cost.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Domain\\Models\\Cost.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Models\\Cost.cs",
-              "RelativeToolTip": "InvestmentControl.Domain\\Models\\Cost.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAADwvzYAAAABAAAAAAAAAA==",
+              "Title": "GetControlProjectsQuery.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Queries\\GetControlProjectsQuery.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Queries\\GetControlProjectsQuery.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Queries\\GetControlProjectsQuery.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Control\\Queries\\GetControlProjectsQuery.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAwwCUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:17:05.289Z",
+              "WhenOpened": "2026-04-15T16:58:50.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AddInvestmentCommand.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddInvestmentCommand.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\AddInvestmentCommand.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddInvestmentCommand.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\AddInvestmentCommand.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAwwCYAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T17:01:38.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "UpdateInvestmentCommand.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\UpdateInvestmentCommand.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\UpdateInvestmentCommand.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\UpdateInvestmentCommand.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\UpdateInvestmentCommand.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAswCcAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T17:02:11.28Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "ProgressReport.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Models\\ProgressReport.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Domain\\Models\\ProgressReport.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Models\\ProgressReport.cs",
-              "RelativeToolTip": "InvestmentControl.Domain\\Models\\ProgressReport.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAmwC4AAAABAAAAAAAAAA==",
+              "Title": "GetInvestmentsQuery.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Queries\\GetInvestmentsQuery.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Queries\\GetInvestmentsQuery.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Queries\\GetInvestmentsQuery.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Control\\Queries\\GetInvestmentsQuery.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAgwCEAAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:17:32.103Z",
+              "WhenOpened": "2026-04-15T17:03:13.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "GetCostsQuery.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Queries\\GetCostsQuery.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Queries\\GetCostsQuery.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Queries\\GetCostsQuery.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Control\\Queries\\GetCostsQuery.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAgwB4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T17:03:31.55Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "Investment.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Models\\Investment.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Domain\\Models\\Investment.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Models\\Investment.cs",
-              "RelativeToolTip": "InvestmentControl.Domain\\Models\\Investment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAABAAAAAAAAAA==",
+              "Title": "GetProgressReportsQuery.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Queries\\GetProgressReportsQuery.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Queries\\GetProgressReportsQuery.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Queries\\GetProgressReportsQuery.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Control\\Queries\\GetProgressReportsQuery.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAYwCEAAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:19:12.349Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "AddCostCommand.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddCostCommand.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\AddCostCommand.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddCostCommand.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\AddCostCommand.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAgwCQAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:21:00.73Z",
+              "WhenOpened": "2026-04-15T17:04:34.312Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "UpdateCostCommand.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\UpdateCostCommand.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\UpdateCostCommand.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\UpdateCostCommand.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\UpdateCostCommand.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAA5wDAAAAABAAAAAAAAAA==",
+              "Title": "AddCostCommand.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddCostCommand.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\AddCostCommand.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddCostCommand.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\AddCostCommand.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAiwGIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:22:25.135Z",
+              "WhenOpened": "2026-04-15T17:07:25.486Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "DeleteCostCommand.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\DeleteCostCommand.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\DeleteCostCommand.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\DeleteCostCommand.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\DeleteCostCommand.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAswCoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:23:05.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "AddProgressReportCommand.cs",
               "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddProgressReportCommand.cs",
               "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\AddProgressReportCommand.cs",
               "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddProgressReportCommand.cs",
               "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\AddProgressReportCommand.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwCIAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAAAswDMAAAB4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:23:29.308Z",
+              "WhenOpened": "2026-04-15T17:09:07.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UpdateCostCommand.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\UpdateCostCommand.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\UpdateCostCommand.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\UpdateCostCommand.cs",
+              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\UpdateCostCommand.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwG4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T17:08:20.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProjectReadRepository .cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\ProjectReadRepository .cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Infrastructure\\Repositories\\ProjectReadRepository .cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Infrastructure\\Repositories\\ProjectReadRepository .cs",
+              "RelativeToolTip": "InvestmentControl.Infrastructure\\Repositories\\ProjectReadRepository .cs",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAywBoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T17:33:22.235Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IProjectReadRepository.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Interfaces\\IProjectReadRepository.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Domain\\Interfaces\\IProjectReadRepository.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Domain\\Interfaces\\IProjectReadRepository.cs",
+              "RelativeToolTip": "InvestmentControl.Domain\\Interfaces\\IProjectReadRepository.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAgwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T17:32:54.507Z",
               "EditorCaption": ""
             },
             {
@@ -407,61 +381,35 @@
               "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\UpdateProgressReportCommand.cs",
               "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\UpdateProgressReportCommand.cs",
               "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\UpdateProgressReportCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCgAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:23:49.966Z",
+              "WhenOpened": "2026-04-15T17:09:33.299Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "DeleteProgressReportCommand.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\DeleteProgressReportCommand.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\DeleteProgressReportCommand.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\DeleteProgressReportCommand.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\DeleteProgressReportCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAABAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "SaveTemplateCommand.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Commands\\SaveTemplateCommand.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Analytics\\Commands\\SaveTemplateCommand.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Commands\\SaveTemplateCommand.cs*",
+              "RelativeToolTip": "InvestmentControl.Application\\Analytics\\Commands\\SaveTemplateCommand.cs*",
+              "ViewState": "AgIAABcAAAAAAAAAAAAcwDsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:24:15.63Z",
+              "WhenOpened": "2026-04-15T17:41:51.111Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AddInvestmentCommand.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddInvestmentCommand.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\AddInvestmentCommand.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\AddInvestmentCommand.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\AddInvestmentCommand.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAACQAAAAxAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "UpdateTemplateCommand.cs",
+              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Commands\\UpdateTemplateCommand.cs",
+              "RelativeDocumentMoniker": "InvestmentControl.Application\\Analytics\\Commands\\UpdateTemplateCommand.cs",
+              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Analytics\\Commands\\UpdateTemplateCommand.cs*",
+              "RelativeToolTip": "InvestmentControl.Application\\Analytics\\Commands\\UpdateTemplateCommand.cs*",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowDQAAABuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:24:37.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UpdateInvestmentCommand.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\UpdateInvestmentCommand.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\UpdateInvestmentCommand.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\UpdateInvestmentCommand.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\UpdateInvestmentCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:24:52.999Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DeleteInvestmentCommand.cs",
-              "DocumentMoniker": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\DeleteInvestmentCommand.cs",
-              "RelativeDocumentMoniker": "InvestmentControl.Application\\Control\\Commands\\DeleteInvestmentCommand.cs",
-              "ToolTip": "D:\\Diplom\\DiplomReact\\Back\\InvestmentControl\\InvestmentControl.Application\\Control\\Commands\\DeleteInvestmentCommand.cs",
-              "RelativeToolTip": "InvestmentControl.Application\\Control\\Commands\\DeleteInvestmentCommand.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAgwCUAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T22:25:22.456Z",
+              "WhenOpened": "2026-04-15T17:42:56.493Z",
               "EditorCaption": ""
             }
           ]
