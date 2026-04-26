@@ -11,4 +11,5 @@ public class ControlProjectReadModel
     public decimal Invested { get; set; }
     public decimal Progress { get; set; }
     public DateTime StartDate { get; set; }
+    public string Status { get; set; } = string.Empty;   // новое поле
 }

@@ -16,7 +16,6 @@ public class GetProjectsAnalyticsQuery : IRequest<List<ProjectAnalyticsDto>>
     public decimal? RankMax { get; set; }
     public List<int>? ExcludedProjectIds { get; set; } // ИЗМЕНЕНО: исключаемые ID
     public List<string>? SelectedFields { get; set; }
-    public string? Search { get; set; }
 }
 
 public class GetProjectsAnalyticsQueryHandler : IRequestHandler<GetProjectsAnalyticsQuery, List<ProjectAnalyticsDto>>
@@ -32,22 +31,26 @@ public class GetProjectsAnalyticsQueryHandler : IRequestHandler<GetProjectsAnaly
 
     public async Task<List<ProjectAnalyticsDto>> Handle(GetProjectsAnalyticsQuery request, CancellationToken cancellationToken)
     {
+        // Проверка обязательного CategoryId
+        if (request.CategoryId <= 0)
+            throw new ArgumentException("CategoryId обязателен и должен быть положительным.");
+
+        // Проверка обязательности списков (хотя бы один элемент)
+        //ValidationHelper.EnsureNonEmptyList(request.DirectionIds, nameof(request.DirectionIds));
+        //ValidationHelper.EnsureNonEmptyList(request.DepartmentIds, nameof(request.DepartmentIds));
+        //ValidationHelper.EnsureNonEmptyList(request.StatusIds, nameof(request.StatusIds));
+        //ValidationHelper.EnsureNonEmptyList(request.SelectedFields, nameof(request.SelectedFields));
+
         ValidationHelper.EnsurePositiveIds(request.DirectionIds, nameof(request.DirectionIds));
         ValidationHelper.EnsurePositiveIds(request.DepartmentIds, nameof(request.DepartmentIds));
         ValidationHelper.EnsurePositiveIds(request.StatusIds, nameof(request.StatusIds));
         ValidationHelper.EnsurePositiveIds(request.ExcludedProjectIds, nameof(request.ExcludedProjectIds));
 
-        // Проверка обязательного CategoryId
-        if (request.CategoryId <= 0)
-            throw new ArgumentException("CategoryId обязателен и должен быть положительным.");
-
-        // Проверка рангов на отрицательные значения
-        if (request.RankMin.HasValue && request.RankMin < 0)
-            throw new ArgumentException("RankMin не может быть отрицательным.");
-        if (request.RankMax.HasValue && request.RankMax < 0)
-            throw new ArgumentException("RankMax не может быть отрицательным.");
-
-        // Проверка диапазона Rank
+        // Проверка рангов от 0 до 100
+        if (request.RankMin.HasValue && (request.RankMin < 0 || request.RankMin > 100))
+            throw new ArgumentException("RankMin должен быть в диапазоне от 0 до 100.");
+        if (request.RankMax.HasValue && (request.RankMax < 0 || request.RankMax > 100))
+            throw new ArgumentException("RankMax должен быть в диапазоне от 0 до 100.");
         if (request.RankMin.HasValue && request.RankMax.HasValue && request.RankMin > request.RankMax)
             throw new ArgumentException("RankMin не может быть больше RankMax.");
 
@@ -64,7 +67,6 @@ public class GetProjectsAnalyticsQueryHandler : IRequestHandler<GetProjectsAnaly
             request.RankMax,
             allowedProjectIds,
             request.ExcludedProjectIds,
-            request.Search,
             cancellationToken);
 
         var result = projects.Select(p => new ProjectAnalyticsDto

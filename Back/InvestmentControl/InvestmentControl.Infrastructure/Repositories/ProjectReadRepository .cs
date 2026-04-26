@@ -25,7 +25,6 @@ public class ProjectReadRepository : IProjectReadRepository
         decimal? rankMax,
         List<int>? allowedProjectIds,
         List<int>? excludedProjectIds,
-        string? search,
         CancellationToken cancellationToken)
     {
         var query = _readOnlyContext.Projects.AsQueryable();
@@ -46,8 +45,6 @@ public class ProjectReadRepository : IProjectReadRepository
             query = query.Where(p => allowedProjectIds.Contains(p.Id));
         if (excludedProjectIds != null && excludedProjectIds.Any())
             query = query.Where(p => !excludedProjectIds.Contains(p.Id));
-        if (!string.IsNullOrEmpty(search))
-            query = query.Where(p => p.Name.Contains(search));
 
         var projects = await query.ToListAsync(cancellationToken);
         if (!projects.Any())
@@ -148,6 +145,8 @@ public class ProjectReadRepository : IProjectReadRepository
         List<int>? categoryIds,
         List<int>? projectIds,
         string? sort,
+        DateTime? dateFrom,
+        DateTime? dateTo,
         CancellationToken cancellationToken)
     {
         // Получаем ID статусов "Активен" и "Завершен"
@@ -164,23 +163,41 @@ public class ProjectReadRepository : IProjectReadRepository
         if (activeStatusId != 0) allowedStatusIds.Add(activeStatusId);
         if (completedStatusId != 0) allowedStatusIds.Add(completedStatusId);
 
-        var query = _readOnlyContext.Projects.Where(p => allowedStatusIds.Contains(p.StatusId ?? 0));
+        var query = _readOnlyContext.Projects
+            .Include(p => p.Status)   // для получения имени статуса
+            .Where(p => allowedStatusIds.Contains(p.StatusId ?? 0));
 
+        // Фильтр по поиску
         if (!string.IsNullOrEmpty(search))
             query = query.Where(p => p.Name.Contains(search));
+
+        // Фильтр по направлениям
         if (directionIds != null && directionIds.Any())
             query = query.Where(p => directionIds.Contains(p.DirectionId));
+
+        // Фильтр по подразделениям
         if (departmentIds != null && departmentIds.Any())
             query = query.Where(p => departmentIds.Contains(p.DepartmentId));
+
+        // Фильтр по категориям
         if (categoryIds != null && categoryIds.Any())
             query = query.Where(p => categoryIds.Contains(p.CategoryId));
+
+        // Фильтр по ID проектов (для заявителя)
         if (projectIds != null && projectIds.Any())
             query = query.Where(p => projectIds.Contains(p.Id));
+
+        // Фильтр по дате публикации (StartDate = PublishedAt)
+        if (dateFrom.HasValue)
+            query = query.Where(p => p.PublishedAt >= dateFrom.Value);
+        if (dateTo.HasValue)
+            query = query.Where(p => p.PublishedAt <= dateTo.Value);
 
         var projects = await query.ToListAsync(cancellationToken);
         if (!projects.Any())
             return new List<ControlProjectReadModel>();
 
+        // Словари для имён (на всякий случай, если навигация не сработала)
         var categoryNames = await _readOnlyContext.Categories
             .ToDictionaryAsync(c => c.Id, c => c.Name, cancellationToken);
         var directionNames = await _readOnlyContext.Directions
@@ -188,12 +205,14 @@ public class ProjectReadRepository : IProjectReadRepository
         var departmentNames = await _readOnlyContext.Departments
             .ToDictionaryAsync(d => d.Id, d => d.Name, cancellationToken);
 
+        // Сумма фактических инвестиций
         var investments = await _controlContext.Investments
             .Where(i => i.ActualAmount.HasValue)
             .GroupBy(i => i.ProjectId)
             .Select(g => new { ProjectId = g.Key, Sum = g.Sum(i => i.ActualAmount.Value) })
             .ToDictionaryAsync(x => x.ProjectId, x => x.Sum, cancellationToken);
 
+        // Максимальный прогресс из отчётов
         var reports = await _controlContext.ProgressReports
             .GroupBy(r => r.ProjectId)
             .Select(g => new { ProjectId = g.Key, MaxProgress = g.Max(r => r.ProgressPercentage) })
@@ -209,14 +228,11 @@ public class ProjectReadRepository : IProjectReadRepository
             Budget = p.Budget ?? 0,
             Invested = investments.GetValueOrDefault(p.Id, 0),
             Progress = reports.GetValueOrDefault(p.Id, 0),
-            StartDate = p.PublishedAt ?? p.CreatedAt
+            StartDate = p.PublishedAt ?? p.CreatedAt,
+            Status = p.Status?.Name ?? string.Empty   // заполняем статус
         }).ToList();
 
-        // Валидация параметра sort – расширенный список
-        var allowedSortValues = new[] { "date_desc", "name_asc", "name_desc", "progress_desc", "progress_asc", "budget_desc", "budget_asc", "invested_desc", "invested_asc" };
-        if (!string.IsNullOrEmpty(sort) && !allowedSortValues.Contains(sort))
-            throw new ArgumentException($"Недопустимое значение sort. Допустимы: {string.Join(", ", allowedSortValues)}");
-
+        // Сортировка
         result = sort switch
         {
             "name_asc" => result.OrderBy(r => r.Name).ToList(),
@@ -227,7 +243,7 @@ public class ProjectReadRepository : IProjectReadRepository
             "budget_asc" => result.OrderBy(r => r.Budget).ToList(),
             "invested_desc" => result.OrderByDescending(r => r.Invested).ToList(),
             "invested_asc" => result.OrderBy(r => r.Invested).ToList(),
-            _ => result.OrderByDescending(r => r.StartDate).ToList() // date_desc
+            _ => result.OrderByDescending(r => r.StartDate).ToList() // date_desc по умолчанию
         };
 
         return result;

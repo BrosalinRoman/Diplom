@@ -1,4 +1,4 @@
-﻿using InvestmentControl.Application.Analytics.DTOs;
+﻿    using InvestmentControl.Application.Analytics.DTOs;
 
 namespace InvestmentControl.API.DTOs.Responses;
 

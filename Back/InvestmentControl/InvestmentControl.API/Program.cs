@@ -110,6 +110,16 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBeh
 // Регистрируем AutoMapper (если используется)
 // builder.Services.AddAutoMapper(typeof(Program).Assembly); // можно добавить позже
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevCors", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Сначала middleware обработки исключений
@@ -123,6 +133,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("DevCors");
 
 app.UseAuthentication();
 app.UseAuthorization();

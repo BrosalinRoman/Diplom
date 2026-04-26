@@ -34,7 +34,6 @@ public class AnalyticsController : ControllerBase
             RankMax = request.RankMax,
             ExcludedProjectIds = request.ProjectIds,
             SelectedFields = request.SelectedFields,
-            Search = request.Search
         };
 
         var projects = await _mediator.Send(query);

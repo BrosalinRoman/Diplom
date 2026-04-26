@@ -26,18 +26,6 @@ public class SaveTemplateCommandHandler : IRequestHandler<SaveTemplateCommand, i
 
     public async Task<int> Handle(SaveTemplateCommand request, CancellationToken cancellationToken)
     {
-        // Проверка имени
-        if (string.IsNullOrWhiteSpace(request.Name))
-            throw new ArgumentException("Имя шаблона обязательно.");
-        if (request.Name.Length > 100)
-            throw new ArgumentException("Имя шаблона не должно превышать 100 символов.");
-
-        // Проверка FiltersJson
-        if (string.IsNullOrWhiteSpace(request.FiltersJson))
-            throw new ArgumentException("FiltersJson обязателен.");
-        if (!IsValidFiltersJson(request.FiltersJson))
-            throw new ArgumentException("FiltersJson должен быть валидным JSON и содержать поле categoryId.");
-
         // Проверка дубликата имени
         var existing = await _templateRepository.GetByUserIdAndNameAsync(_currentUser.UserId, request.Name, cancellationToken);
         if (existing != null)
@@ -47,18 +35,5 @@ public class SaveTemplateCommandHandler : IRequestHandler<SaveTemplateCommand, i
         await _templateRepository.AddAsync(template, cancellationToken);
         await _templateRepository.SaveChangesAsync(cancellationToken);
         return template.Id;
-    }
-
-    private bool IsValidFiltersJson(string json)
-    {
-        try
-        {
-            using var doc = JsonDocument.Parse(json);
-            return doc.RootElement.TryGetProperty("categoryId", out _);
-        }
-        catch
-        {
-            return false;
-        }
     }
 }

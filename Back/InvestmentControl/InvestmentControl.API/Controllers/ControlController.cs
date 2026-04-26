@@ -29,7 +29,9 @@ public class ControlController : ControllerBase
             DirectionIds = request.DirectionIds,
             DepartmentIds = request.DepartmentIds,
             CategoryIds = request.CategoryIds,
-            Sort = request.Sort
+            Sort = request.Sort,
+            DateFrom = request.DateFrom,   
+            DateTo = request.DateTo
         };
         var projects = await _mediator.Send(query);
         return Ok(projects);

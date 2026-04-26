@@ -56,8 +56,6 @@ public class AddProgressReportCommandHandler : IRequestHandler<AddProgressReport
         var maxProgress = existingReports.Any() ? existingReports.Max(r => r.ProgressPercentage) : 0;
         if (request.ProgressPercentage <= maxProgress)
             throw new ArgumentException($"Новый прогресс ({request.ProgressPercentage}%) должен быть больше предыдущего ({maxProgress}%).");
-        if (request.ProgressPercentage < 1 || request.ProgressPercentage > 100)
-            throw new ArgumentException("Прогресс должен быть в диапазоне от 1 до 100.");
 
         var report = new ProgressReport(request.ProjectId, request.Description, request.ProgressPercentage);
         await _progressReportRepository.AddAsync(report, cancellationToken);

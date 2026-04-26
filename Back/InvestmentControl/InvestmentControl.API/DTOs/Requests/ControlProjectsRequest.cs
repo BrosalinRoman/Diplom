@@ -7,4 +7,6 @@ public class ControlProjectsRequest
     public List<int>? DepartmentIds { get; set; }
     public List<int>? CategoryIds { get; set; }
     public string? Sort { get; set; }
+    public DateTime? DateFrom { get; set; }
+    public DateTime? DateTo { get; set; }
 }

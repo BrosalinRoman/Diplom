@@ -33,11 +33,6 @@ public class AddInvestmentCommandHandler : IRequestHandler<AddInvestmentCommand,
 
     public async Task<int> Handle(AddInvestmentCommand request, CancellationToken cancellationToken)
     {
-        if (request.PlannedDate.HasValue && !request.PlannedAmount.HasValue)
-            throw new ArgumentException("Для плановой даты необходимо указать плановую сумму.");
-        if (request.ActualDate.HasValue && !request.ActualAmount.HasValue)
-            throw new ArgumentException("Для фактической даты необходимо указать фактическую сумму.");
-
         if (request.ProjectId <= 0)
             throw new ArgumentException("ID проекта должен быть положительным.");
 
@@ -50,14 +45,6 @@ public class AddInvestmentCommandHandler : IRequestHandler<AddInvestmentCommand,
         var status = await _projectReadRepository.GetStatusAsync(request.ProjectId, cancellationToken);
         if (status != "Активен")
             throw new ArgumentException("Инвестиции можно добавлять только для активных проектов.");
-
-        if (request.PlannedDate.HasValue && request.ActualDate.HasValue && request.ActualDate < request.PlannedDate)
-            throw new ArgumentException("Фактическая дата не может быть раньше плановой.");
-
-        if (request.PlannedAmount.HasValue && !request.PlannedDate.HasValue)
-            throw new ArgumentException("Для плановой суммы необходимо указать плановую дату.");
-        if (request.ActualAmount.HasValue && !request.ActualDate.HasValue)
-            throw new ArgumentException("Для фактической суммы необходимо указать фактическую дату.");
 
         var publishedAt = await _projectReadRepository.GetPublishedAtAsync(request.ProjectId, cancellationToken);
         if (request.PlannedDate.HasValue && request.PlannedDate < publishedAt)

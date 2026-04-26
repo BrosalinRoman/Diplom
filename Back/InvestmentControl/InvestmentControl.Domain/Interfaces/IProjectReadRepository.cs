@@ -13,7 +13,6 @@ public interface IProjectReadRepository
         decimal? rankMax,
         List<int>? allowedProjectIds,
         List<int>? excludedProjectIds,
-        string? search,
         CancellationToken cancellationToken);
 
     Task<List<int>> GetProjectIdsByCreatorAsync(int userId, CancellationToken cancellationToken);
@@ -34,6 +33,8 @@ public interface IProjectReadRepository
         List<int>? categoryIds,
         List<int>? projectIds,
         string? sort,
+        DateTime? dateFrom,
+        DateTime? dateTo,
         CancellationToken cancellationToken);
 
     // ДОБАВЛЕННЫЕ МЕТОДЫ

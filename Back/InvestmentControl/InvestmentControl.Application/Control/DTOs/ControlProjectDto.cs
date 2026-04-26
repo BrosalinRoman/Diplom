@@ -8,7 +8,8 @@ public class ControlProjectDto
     public string Direction { get; set; } = string.Empty;
     public string Department { get; set; } = string.Empty;
     public decimal Budget { get; set; }
-    public decimal Invested { get; set; } // сумма фактических инвестиций
-    public decimal Progress { get; set; } // последний процент из отчётов
-    public DateTime StartDate { get; set; } // дата начала инвестиций
+    public decimal Invested { get; set; }
+    public decimal Progress { get; set; }
+    public DateTime StartDate { get; set; }
+    public string Status { get; set; } = string.Empty;
 }

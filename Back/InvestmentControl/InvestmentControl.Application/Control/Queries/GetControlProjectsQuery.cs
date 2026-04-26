@@ -12,7 +12,9 @@ public class GetControlProjectsQuery : IRequest<List<ControlProjectDto>>
     public List<int>? DirectionIds { get; set; }
     public List<int>? DepartmentIds { get; set; }
     public List<int>? CategoryIds { get; set; }
-    public string? Sort { get; set; } 
+    public string? Sort { get; set; }
+    public DateTime? DateFrom { get; set; }
+    public DateTime? DateTo { get; set; }
 }
 
 public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjectsQuery, List<ControlProjectDto>>
@@ -36,6 +38,11 @@ public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjects
 
     public async Task<List<ControlProjectDto>> Handle(GetControlProjectsQuery request, CancellationToken cancellationToken)
     {
+        // Проверка обязательности списков (хотя бы один элемент)
+        //ValidationHelper.EnsureNonEmptyList(request.DirectionIds, nameof(request.DirectionIds));
+        //ValidationHelper.EnsureNonEmptyList(request.DepartmentIds, nameof(request.DepartmentIds));
+        //ValidationHelper.EnsureNonEmptyList(request.CategoryIds, nameof(request.CategoryIds));
+
         ValidationHelper.EnsurePositiveIds(request.DirectionIds, nameof(request.DirectionIds));
         ValidationHelper.EnsurePositiveIds(request.DepartmentIds, nameof(request.DepartmentIds));
         ValidationHelper.EnsurePositiveIds(request.CategoryIds, nameof(request.CategoryIds));
@@ -45,6 +52,11 @@ public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjects
         if (!string.IsNullOrEmpty(request.Sort) && !allowedSortValues.Contains(request.Sort))
             throw new ArgumentException($"Недопустимое значение sort. Допустимы: {string.Join(", ", allowedSortValues)}");
 
+        // Проверка дат
+        if (request.DateFrom.HasValue && request.DateTo.HasValue && request.DateFrom > request.DateTo)
+            throw new ArgumentException("DateFrom не может быть позже DateTo.");
+
+        // Определяем, какие проекты видит пользователь
         var projectIds = _currentUser.Role == "Applicant"
             ? await _projectReadRepository.GetProjectIdsByCreatorAsync(_currentUser.UserId, cancellationToken)
             : null;
@@ -56,8 +68,11 @@ public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjects
             request.CategoryIds,
             projectIds,
             request.Sort,
+            request.DateFrom,
+            request.DateTo,
             cancellationToken);
 
+        // Маппим в DTO (поле Status будет заполнено в репозитории)
         return projects.Select(p => new ControlProjectDto
         {
             Id = p.Id,
@@ -68,7 +83,8 @@ public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjects
             Budget = p.Budget,
             Invested = p.Invested,
             Progress = p.Progress,
-            StartDate = p.StartDate
+            StartDate = p.StartDate,
+            Status = p.Status
         }).ToList();
     }
 }

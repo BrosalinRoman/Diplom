@@ -1,0 +1,91 @@
+# Build output
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+
+# Rider specific
+*.DotSettings.user
+*.DotSettings
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Logs
+*.log
+*.htm
+*.html
+logs/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+*.nuget.props
+*.nuget.targets
+
+# Local configuration files (secrets, connection strings)
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Entity Framework / Migrations (если не хотите хранить миграции – но обычно их хранят)
+# Migrations/
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Generated documentation
+Generated_Code/
+docs/_build/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# OS metadata
+.DS_Store
+Desktop.ini
+
+# Temp files
+*.tmp
+*.temp
+*.cache
+*.vsidx
+
+# Publish profiles
+*.Publish.xml
+*.pubxml.user
+
+# Docker
+.dockerignore
+docker-compose*.override.yml
+
+# BenchmarkDotNet
+BenchmarkDotNet.Artifacts/
+
+# SonarQube
+.sonarqube/

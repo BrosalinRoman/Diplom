@@ -61,8 +61,6 @@ public class UpdateProgressReportCommandHandler : IRequestHandler<UpdateProgress
             throw new ArgumentException($"Новый прогресс ({request.ProgressPercentage}%) должен быть больше предыдущего ({maxPrevious}%).");
         if (request.ProgressPercentage > minLater)
             throw new ArgumentException($"Новый прогресс ({request.ProgressPercentage}%) не может быть больше прогресса в более поздних отчётах ({minLater}%).");
-        if (request.ProgressPercentage < 1 || request.ProgressPercentage > 100)
-            throw new ArgumentException("Прогресс должен быть в диапазоне от 1 до 100.");
 
         report.Update(request.Description, request.ProgressPercentage);
         _progressReportRepository.Update(report);
