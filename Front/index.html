@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в систему - Управление инвестиционными проектами</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-logo">
+            <img src="images/logo.png" alt="Логотип системы">
+        </div>
+        <form class="auth-form" id="loginForm">
+            <h1>Вход в систему</h1>
+            <div class="form-group">
+                <label for="username">Логин</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <div class="password-input">
+                    <input type="password" id="password" required>
+                    <button type="button" class="toggle-password">👁️</button>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary">Войти</button>
+            <div class="auth-info">
+                <p>Регистрация в системе не предусмотрена.</p>
+                <p>Для получения учетной записи обратитесь в техподдержку.</p>
+                <a href="mailto:support@company.ru" class="support-link">📞 Связаться с техподдержкой</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

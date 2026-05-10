@@ -47,7 +47,8 @@ public class GetCostsQueryHandler : IRequestHandler<GetCostsQuery, List<CostDto>
         }
 
         var costs = await _costRepository.GetByProjectIdAsync(request.ProjectId, cancellationToken);
-        return costs.Select(c => new CostDto
+        var sorted = costs.OrderBy(c => c.Date).ToList();
+        return sorted.Select(c => new CostDto
         {
             Id = c.Id,
             Amount = c.Amount,

@@ -1,0 +1,379 @@
+/* nsi.css */
+
+.nsi-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.nsi-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    background: white;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    overflow: hidden;
+}
+
+.tab-button {
+    padding: 1rem 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--dark-gray);
+    transition: var(--transition);
+    border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+    color: var(--secondary-color);
+    background: var(--light-gray);
+}
+
+.tab-button.active {
+    color: var(--secondary-color);
+    border-bottom-color: var(--secondary-color);
+    background: white;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Карточки и списки */
+.section-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h2 {
+    flex-shrink: 0;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.search-input {
+    flex: 1 1 250px;
+    min-width: 200px;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Элементы справочников */
+.list-item {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    background: white;
+    overflow: hidden;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.item-header:hover {
+    background: var(--light-gray);
+}
+
+.item-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.item-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-edit-item,
+.btn-delete-item,
+.btn-lock-item {
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease;
+    color: white;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-edit-item {
+    background-color: var(--secondary-color);
+}
+
+.btn-delete-item {
+    background-color: var(--accent-color);
+}
+
+.btn-lock-item {
+    background-color: var(--warning-color);
+}
+
+.btn-edit-item:hover {
+    background-color: #2980B9;
+}
+
+.btn-delete-item:hover {
+    background-color: #c0392b;
+}
+
+.btn-lock-item:hover {
+    background-color: #e67e22;
+}
+
+.item-content {
+    display: none;
+    padding: 1rem;
+    background: white;
+}
+
+.list-item.open .item-content {
+    display: block;
+}
+
+/* Формулы */
+.formula-expression {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--light-gray);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.item-description {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+}
+
+/* Диапазоны */
+.range-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.range-table th,
+.range-table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.range-table th {
+    background-color: var(--light-gray);
+    font-weight: 600;
+}
+
+/* Пользователи */
+.user-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;                /* отступы между элементами (и справа, и снизу) */
+    font-size: 0.9rem;
+}
+
+.user-fields .field {
+    flex: 0 0 auto;            /* ширина по содержимому, не растягивается */
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+    min-width: 120px;          /* минимальная ширина для аккуратности (можно убрать) */
+}
+
+.user-fields .field-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.1rem;
+    font-size: 0.8rem;
+}
+
+/* Цвета статусов */
+.status-chernovik .item-content {
+    background-color: #d0d0d0;
+}
+.status-chernovik .item-header:hover {
+    background-color: #d0d0d0;
+}
+
+.status-podan .item-content { background-color: #e3f2fd; }
+.status-na-rassmotrenii .item-content { background-color: #fff3e0; }
+.status-odobren .item-content { background-color: #e8f5e9; }
+.status-na-dorabotke .item-content { background-color: #ffecb3; }
+.status-otklonen .item-content { background-color: #ffebee; }
+.status-aktiven .item-content { background-color: #e0f2f1; }
+.status-zavershen .item-content { background-color: #e8eaf6; }
+
+/* Модальные окна */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow: auto;
+    animation: slideUp 0.3s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* Строки диапазонов в модальном окне */
+.range-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.range-row input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.range-row .btn-delete-row {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.range-row .btn-delete-row:hover {
+    background-color: #c0392b;
+}
+
+#add-range-row {
+    margin-top: 0.5rem;
+}
+
+.hint {
+    color: var(--dark-gray);
+    font-style: italic;
+    margin-top: 0.25rem;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .card-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-input {
+        width: auto;
+    }
+    .user-fields {
+        grid-template-columns: 1fr;
+    }
+}

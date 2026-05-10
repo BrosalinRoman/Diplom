@@ -1,6 +1,4 @@
-﻿namespace InvestmentControl.API.DTOs.Requests;
-
-public class AnalyticsRequest
+﻿public class AnalyticsRequest
 {
     public int CategoryId { get; set; }
     public List<int>? DirectionIds { get; set; }
@@ -10,5 +8,6 @@ public class AnalyticsRequest
     public decimal? RankMax { get; set; }
     public List<int>? ProjectIds { get; set; }
     public List<string>? SelectedFields { get; set; }
-    public string? Search { get; set; }
+    public int Page { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
 }

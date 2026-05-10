@@ -58,6 +58,13 @@ public class UpdateInvestmentCommandHandler : IRequestHandler<UpdateInvestmentCo
         if (request.ActualDate.HasValue && request.ActualDate < publishedAt)
             throw new ArgumentException("Фактическая дата не может быть раньше даты публикации проекта.");
 
+        if (!request.PlannedDate.HasValue && request.ActualDate.HasValue)
+        {
+            var lastPlannedDate = await _investmentRepository.GetLastPlannedDateAsync(investment.ProjectId, request.Id, cancellationToken);
+            if (lastPlannedDate.HasValue && request.ActualDate <= lastPlannedDate.Value)
+                throw new ArgumentException($"Фактическая дата не может быть равна или раньше последней плановой даты инвестиций ({lastPlannedDate.Value:d}).");
+        }
+
         // Бюджет с учётом других инвестиций
         var budget = await _projectReadRepository.GetBudgetAsync(investment.ProjectId, cancellationToken) ?? 0;
         var allInvestments = await _investmentRepository.GetByProjectIdAsync(investment.ProjectId, cancellationToken);

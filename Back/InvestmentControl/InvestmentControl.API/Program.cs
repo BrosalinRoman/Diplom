@@ -96,6 +96,7 @@ builder.Services.AddScoped<IInvestmentRepository, InvestmentRepository>();
 builder.Services.AddScoped<ICostRepository, CostRepository>();
 builder.Services.AddScoped<IProgressReportRepository, ProgressReportRepository>();
 builder.Services.AddScoped<IProjectReadRepository, ProjectReadRepository>();
+builder.Services.AddScoped<IReferenceDataRepository, ReferenceDataRepository>();
 
 // Регистрируем сервис текущего пользователя
 builder.Services.AddHttpContextAccessor();

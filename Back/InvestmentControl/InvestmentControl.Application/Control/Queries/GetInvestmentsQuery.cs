@@ -47,7 +47,12 @@ public class GetInvestmentsQueryHandler : IRequestHandler<GetInvestmentsQuery, L
         }
 
         var investments = await _investmentRepository.GetByProjectIdAsync(request.ProjectId, cancellationToken);
-        return investments.Select(i => new InvestmentDto
+        var sorted = investments
+            .OrderBy(i => i.PlannedDate.HasValue ? 0 : 1)   // сначала с плановой датой
+            .ThenBy(i => i.PlannedDate)
+            .ThenBy(i => i.ActualDate)
+            .ToList();
+        return sorted.Select(i => new InvestmentDto
         {
             Id = i.Id,
             PlannedAmount = i.PlannedAmount,

@@ -33,10 +33,10 @@ public class GetSummaryByDepartmentsQueryHandler : IRequestHandler<GetSummaryByD
         if (_currentUser.Role != "Investor" && _currentUser.Role != "Admin")
             throw new ForbiddenAccessException("Только инвестор или администратор может просматривать сводку.");
 
-        //ValidationHelper.EnsureNonEmptyList(request.DepartmentIds, nameof(request.DepartmentIds));
-        //ValidationHelper.EnsureNonEmptyList(request.StatusIds, nameof(request.StatusIds));
-        //ValidationHelper.EnsureNonEmptyList(request.DirectionIds, nameof(request.DirectionIds));
-        //ValidationHelper.EnsureNonEmptyList(request.CategoryIds, nameof(request.CategoryIds));
+        ValidationHelper.EnsureNonEmptyList(request.DepartmentIds, nameof(request.DepartmentIds));
+        ValidationHelper.EnsureNonEmptyList(request.StatusIds, nameof(request.StatusIds));
+        ValidationHelper.EnsureNonEmptyList(request.DirectionIds, nameof(request.DirectionIds));
+        ValidationHelper.EnsureNonEmptyList(request.CategoryIds, nameof(request.CategoryIds));
 
         ValidationHelper.EnsurePositiveIds(request.DepartmentIds, nameof(request.DepartmentIds));
         ValidationHelper.EnsurePositiveIds(request.StatusIds, nameof(request.StatusIds));

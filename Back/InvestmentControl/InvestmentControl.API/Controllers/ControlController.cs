@@ -1,4 +1,5 @@
 ﻿using InvestmentControl.API.DTOs.Requests;
+using InvestmentControl.Application.Common.DTOs;
 using InvestmentControl.Application.Control.Commands;
 using InvestmentControl.Application.Control.DTOs;
 using InvestmentControl.Application.Control.Queries;
@@ -21,7 +22,7 @@ public class ControlController : ControllerBase
     }
 
     [HttpGet("projects")]
-    public async Task<ActionResult<List<ControlProjectDto>>> GetProjects([FromQuery] ControlProjectsRequest request)
+    public async Task<ActionResult<PagedResponse<ControlProjectDto>>> GetProjects([FromQuery] ControlProjectsRequest request)
     {
         var query = new GetControlProjectsQuery
         {
@@ -29,12 +30,22 @@ public class ControlController : ControllerBase
             DirectionIds = request.DirectionIds,
             DepartmentIds = request.DepartmentIds,
             CategoryIds = request.CategoryIds,
+            StatusIds = request.StatusIds,
             Sort = request.Sort,
-            DateFrom = request.DateFrom,   
-            DateTo = request.DateTo
+            DateFrom = request.DateFrom,
+            DateTo = request.DateTo,
+            Page = request.Page,
+            PageSize = request.PageSize
         };
-        var projects = await _mediator.Send(query);
-        return Ok(projects);
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    [HttpGet("projects/{projectId}/info")]
+    public async Task<ActionResult<ProjectInfoDto>> GetProjectInfo(int projectId)
+    {
+        var info = await _mediator.Send(new GetProjectInfoQuery { ProjectId = projectId });
+        return Ok(info);
     }
 
     // investments

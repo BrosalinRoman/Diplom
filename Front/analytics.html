@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитика - Управление инвестиционными проектами</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/analytics.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="home.html" class="logo-link">
+                <img src="images/logo.png" alt="Логотип системы" class="logo">
+                <span class="system-name">Система управления инвестиционными проектами</span>
+            </a>
+            <nav class="main-nav">
+                <a href="home.html" class="nav-link">Главная</a>
+                <a href="nsi.html" class="nav-link">НСИ</a>
+                <a href="projects.html" class="nav-link">Инвестпроекты</a>
+                <a href="analytics.html" class="nav-link active">Аналитика</a>
+                <a href="control.html" class="nav-link">Контроль</a>
+            </nav>
+            <div class="user-menu">
+                <span class="user-name">Загрузка...</span>
+                <button class="logout-btn">Выйти</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="analytics-container">
+            <div class="page-header"><h1>Аналитика</h1></div>
+
+            <div class="analytics-tabs">
+                <button class="tab-button active" data-tab="analysis">Анализ проектов</button>
+                <button class="tab-button" data-tab="summary">Сводка по подразделениям</button>
+                <button class="tab-button" data-tab="templates">Шаблоны</button>
+            </div>
+
+            <!-- Вкладка Анализ проектов -->
+            <div id="analysis" class="tab-pane active">
+                <div class="analytics-layout">
+                    <div class="report-builder">
+                        <h2>Конструктор таблицы</h2>
+
+                        <!-- Шаг 1: Загрузка шаблона -->
+                        <div class="builder-step">
+                            <h3>Шаг 1: Загрузка шаблона</h3>
+                            <div class="form-group mb-0">
+                                <label for="templateSelect">Выберите сохраненный шаблон</label>
+                                <select id="templateSelect">
+                                    <option value="">-- Выберите шаблон --</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Шаг 2: Выбор проектов -->
+                        <div class="builder-step">
+                            <h3>Шаг 2: Выбор проектов</h3>
+                            <div class="filters">
+                                <div class="filter-group">
+                                    <span>Категория *</span>
+                                    <select id="categorySelect" class="filter-select"></select>
+                                </div>
+                                <div class="filter-group">
+                                    <span>Направления</span>
+                                    <div class="dropdown-checkbox" id="directionDropdown">
+                                        <button class="dropdown-trigger btn-secondary" type="button">Все направления</button>
+                                        <div class="dropdown-menu"></div>
+                                    </div>
+                                </div>
+                                <div class="filter-group">
+                                    <span>Подразделения</span>
+                                    <div class="dropdown-checkbox" id="departmentDropdown">
+                                        <button class="dropdown-trigger btn-secondary" type="button">Все подразделения</button>
+                                        <div class="dropdown-menu"></div>
+                                    </div>
+                                </div>
+                                <div class="filter-group">
+                                    <span>Статус</span>
+                                    <div class="dropdown-checkbox" id="statusDropdown">
+                                        <button class="dropdown-trigger btn-secondary" type="button">Все статусы</button>
+                                        <div class="dropdown-menu"></div>
+                                    </div>
+                                </div>
+                                <div class="filter-group">
+                                    <span>Ранг</span>
+                                    <div class="range-filters">
+                                        <input type="number" id="filterRankMin" placeholder="от">
+                                        <input type="number" id="filterRankMax" placeholder="до">
+                                    </div>
+                                </div>
+                                <div class="saved-filters-container">
+                                    <button class="btn-primary" id="applyFiltersBtn">Применить фильтры</button>
+                                </div>
+                            </div>
+                            <div class="selected-count" id="selectedCount" style="cursor: pointer;">Выбрано проектов: <span id="projectsCount">0</span></div>
+                        </div>
+
+                        <!-- Шаг 3: Выбор данных для таблицы -->
+                        <div class="builder-step">
+                            <h3>Шаг 3: Выбор данных для таблицы</h3>
+                            <div class="data-selection" id="dataFieldsContainer"></div>
+                            <div style="margin-top: 1rem;">
+                                <button class="btn-secondary" id="resetFiltersBtn">Сбросить фильтры</button>
+                            </div>
+                        </div>
+
+                        <div class="saved-templates-container">
+                            <button class="btn-primary" id="saveAsTemplateBtn">Сохранить шаблон</button>
+                            <button class="btn-warning" id="editTemplateBtn">Изменить шаблон</button>
+                        </div>
+                    </div>
+
+                    <div class="report-viewer">
+                        <div class="viewer-tabs">
+                            <button class="viewer-tab active" data-tab="table">Таблица</button>
+                            <button class="viewer-tab" data-tab="chart">График</button>
+                        </div>
+                        <div class="viewer-content">
+                            <div id="tableTab" class="viewer-pane active">
+                                <div class="table-container">
+                                    <table id="reportTable">
+                                        <thead><tr><th>Название проекта</th></tr></thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <button class="btn-secondary" id="exportExcel">Экспорт в Excel</button>
+                            </div>
+                            <div id="chartTab" class="viewer-pane">
+                                <div class="chart-container"><canvas id="reportChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Сводка по подразделениям -->
+            <div id="summary" class="tab-pane">
+                <div class="analytics-layout">
+                    <div class="report-builder">
+                        <h2>Фильтры</h2>
+                        <div class="filter-group">
+                            <span>Подразделения</span>
+                            <div class="dropdown-checkbox" id="summaryDepartmentDropdown">
+                                <button class="dropdown-trigger btn-secondary" type="button">Все подразделения</button>
+                                <div class="dropdown-menu"></div>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <span>Дата</span>
+                            <div class="range-filters">
+                                <input type="date" id="summaryDateFrom">
+                                <input type="date" id="summaryDateTo">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <span>Статус</span>
+                            <div class="dropdown-checkbox" id="summaryStatusDropdown">
+                                <button class="dropdown-trigger btn-secondary" type="button">Все статусы</button>
+                                <div class="dropdown-menu"></div>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <span>Направление</span>
+                            <div class="dropdown-checkbox" id="summaryDirectionDropdown">
+                                <button class="dropdown-trigger btn-secondary" type="button">Все направления</button>
+                                <div class="dropdown-menu"></div>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <span>Категория</span>
+                            <div class="dropdown-checkbox" id="summaryCategoryDropdown">
+                                <button class="dropdown-trigger btn-secondary" type="button">Все категории</button>
+                                <div class="dropdown-menu"></div>
+                            </div>
+                        </div>
+                        <div class="saved-filters-container">
+                            <!-- <button class="btn-primary" id="applySummaryFiltersBtn">Применить фильтры</button> -->
+                            <button class="btn-secondary" id="resetSummaryFiltersBtn">Сбросить фильтры</button>
+                        </div>
+                    </div>
+                    <div class="report-viewer">
+                        <div class="viewer-tabs">
+                            <button class="viewer-tab active" data-tab="summaryTable">Таблица</button>
+                            <button class="viewer-tab" data-tab="summaryChart">График</button>
+                        </div>
+                        <div class="viewer-content">
+                            <div id="summaryTableTab" class="viewer-pane active">
+                                <div class="table-container">
+                                    <table id="summaryTable">
+                                        <thead><tr><th>Наименование подразделения</th><th>Количество проектов</th><th>Запрашиваемая сумма</th></tr></thead>
+                                        <tbody></tbody>
+                                        <tfoot><tr><th>Всего</th><th id="totalProjects">0</th><th id="totalBudget">0</th></tr></tfoot>
+                                    </table>
+                                </div>
+                                <button class="btn-secondary" id="exportSummaryExcel">Экспорт в Excel</button>
+                            </div>
+                            <div id="summaryChartTab" class="viewer-pane">
+                                <div class="chart-container"><canvas id="summaryChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Шаблоны -->
+            <div id="templates" class="tab-pane">
+                <div class="tab-pane-header"><h2>Шаблоны</h2></div>
+                <div class="templates-container">
+                    <div class="search-box"><input type="text" id="templateSearch" placeholder="Поиск по названию шаблона..."></div>
+                    <div id="templatesList" class="templates-list"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальное окно выбора проектов (используем modal-overlay/modal) -->
+    <div id="projectSelectionModal" class="modal-overlay">
+        <div class="modal">
+            <h3>Выбор проектов</h3>
+            <input type="text" id="projectSearch" placeholder="Поиск по названию...">
+            <div id="projectList" class="project-list"></div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="closeProjectModal">Отмена</button>
+                <button class="btn-primary" id="saveProjectSelection">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для ввода имени шаблона -->
+    <div id="templateNameModal" class="modal-overlay">
+        <div class="modal">
+            <h2 id="templateModalTitle">Сохранить шаблон</h2>
+            <div class="form-group">
+                <label for="templateNameInput">Название шаблона</label>
+                <input type="text" id="templateNameInput" class="modal-field">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelTemplateModal">Отмена</button>
+                <button class="btn-primary" id="confirmTemplateSave">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2024 Система управления инвестиционными проектами</p>
+            <p>Контакты: <a href="mailto:support@company.ru">support@company.ru</a> | Версия 2.1.4</p>
+        </div>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/analytics.js"></script>
+</body>
+</html>

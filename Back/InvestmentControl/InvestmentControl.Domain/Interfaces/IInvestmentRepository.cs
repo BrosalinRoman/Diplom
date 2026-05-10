@@ -6,6 +6,7 @@ public interface IInvestmentRepository
 {
     Task<Investment?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
     Task<IEnumerable<Investment>> GetByProjectIdAsync(int projectId, CancellationToken cancellationToken = default);
+    Task<DateTime?> GetLastPlannedDateAsync(int projectId, int? excludeInvestmentId = null, CancellationToken cancellationToken = default);
     Task AddAsync(Investment investment, CancellationToken cancellationToken = default);
     void Update(Investment investment);
     void Delete(Investment investment);

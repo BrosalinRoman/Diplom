@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - Управление инвестиционными проектами</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="home.html" class="logo-link">
+                <img src="images/logo.png" alt="Логотип системы" class="logo">
+                <span class="system-name">Система управления инвестиционными проектами</span>
+            </a>
+            <nav class="main-nav">
+                <a href="home.html" class="nav-link active">Главная</a>
+                <a href="nsi.html" class="nav-link">НСИ</a>
+                <a href="projects.html" class="nav-link">Инвестпроекты</a>
+                <a href="analytics.html" class="nav-link">Аналитика</a>
+                <a href="control.html" class="nav-link">Контроль</a>
+            </nav>
+            <div class="user-menu">
+                <span class="user-name">Иванов А.В.<br/>(Администратор)</span>
+                <button class="logout-btn">Выйти</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="dashboard-container">
+            <h1 class="welcome-title">Добро пожаловать в систему управления инвестиционными проектами!</h1>
+
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="card-icon">📋</div>
+                    <h3>НСИ</h3>
+                    <p>Работа с общими формулами и создание своих расчетов для ТЭО</p>
+                    <a href="nsi.html" class="card-link">Перейти</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon">💼</div>
+                    <h3>Инвестпроекты</h3>
+                    <p>Управление инвестиционными проектами и ранжирование</p>
+                    <a href="projects.html" class="card-link">Перейти</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Аналитика</h3>
+                    <p>Создание отчетов и аналитических дашбордов</p>
+                    <a href="analytics.html" class="card-link">Перейти</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon">📈</div>
+                    <h3>Контроль</h3>
+                    <p>Контроль за  активными инвестициями</p>
+                    <a href="control.html" class="card-link">Перейти</a>
+                </div>
+            </div>
+
+            <div class="quick-start">
+                <h2>🚀 Быстрый старт</h2>
+                <ol class="steps-list">
+                    <li>Создайте новый инвестиционный проект</li>
+                    <li>Заполните данные ТЭО в карточке проекта</li>
+                    <li>Проанализируйте автоматически рассчитанный ранг проекта</li>
+                    <li>Используйте раздел аналитики для создания отчетов</li>
+                </ol>
+            </div>
+
+            <div class="support-info">
+                <p>📞 Нужна помощь? Обратитесь в техническую поддержку: <a
+                        href="mailto:support@company.ru">support@company.ru</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2024 Система управления инвестиционными проектами</p>
+            <p>Контакты: <a href="mailto:support@company.ru">support@company.ru</a> | Версия 2.1.4</p>
+        </div>
+    </footer>
+
+    <script src="js/dashbord.js"></script>
+</body>
+
+</html>

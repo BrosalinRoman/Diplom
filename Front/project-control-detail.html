@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект - Управление инвестиционными проектами</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/project-control-detail.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="home.html" class="logo-link">
+                <img src="images/logo.png" alt="Логотип системы" class="logo">
+                <span class="system-name">Система управления инвестиционными проектами</span>
+            </a>
+            <nav class="main-nav">
+                <a href="home.html" class="nav-link">Главная</a>
+                <a href="nsi.html" class="nav-link">НСИ</a>
+                <a href="projects.html" class="nav-link">Инвестпроекты</a>
+                <a href="analytics.html" class="nav-link">Аналитика</a>
+                <a href="control.html" class="nav-link">Контроль</a>
+            </nav>
+            <div class="user-menu">
+                <span class="user-name">Загрузка...</span>
+                <button class="logout-btn">Выйти</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="project-control-detail-container">
+            <div class="project-header">
+                <div class="project-title">
+                    <h1>Проект: загрузка...</h1>
+                    <div class="project-meta">
+                        <span>Бюджет: 0 BYN</span>
+                        <span>Проинвестировано: <span id="investedTotal">0</span> BYN</span>
+                        <span>Осталось: <span id="leftTotal">0</span> BYN</span>
+                        <span>Затрачено: <span id="spentTotal">0</span> BYN</span>
+                        <span>Прогресс реализации: <span id="progressPercent">0</span>%</span>
+                    </div>
+                </div>
+                <div class="project-actions">
+                    <button class="btn-secondary" id="backToListBtn">← Назад к списку</button>
+                </div>
+            </div>
+
+            <div class="project-tabs">
+                <button class="tab-button active" data-tab="invest">Инвестиции</button>
+                <button class="tab-button" data-tab="cost">Затраты</button>
+                <button class="tab-button" data-tab="work-done">Отчет о проделанной работе</button>
+                <button class="tab-button" data-tab="visual">Визуализация</button>
+            </div>
+
+            <div class="tab-content">
+                <div id="invest" class="tab-pane active">
+                    <div class="tab-header">
+                        <h2>Инвестиции</h2>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn-primary" id="addInvestBtn">+ Добавить инвестицию</button>
+                            <button class="btn-secondary export-btn" data-table="investmentsTable"
+                                data-title="Инвестиции по проекту">Экспорт в Excel</button>
+                        </div>
+                    </div>
+                    <table class="data-table" id="investmentsTable">
+                        <thead>
+                            <tr>
+                                <th>План, BYN</th>
+                                <th>Факт, BYN</th>
+                                <th>Планируемая дата</th>
+                                <th>Дата внесения</th>
+                                <th>Функционал</th>
+                            </tr>
+                        </thead>
+                        <tbody id="investmentsBody"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td id="totalPlan">0</td>
+                                <td id="totalFact">0</td>
+                                <td id="maxPlanDate">-</td>
+                                <td id="maxFactDate">-</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="cost" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>Затраты</h2>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn-primary" id="addCostBtn">+ Добавить затраты</button>
+                            <button class="btn-secondary export-btn" data-table="costsTable"
+                                data-title="Затраты по проекту">Экспорт в Excel</button>
+                        </div>
+                    </div>
+                    <table class="data-table" id="costsTable">
+                        <thead>
+                            <tr>
+                                <th>Сумма, BYN</th>
+                                <th>Описание</th>
+                                <th>Ответственный</th>
+                                <th>Дата</th>
+                                <th>Функционал</th>
+                            </tr>
+                        </thead>
+                        <tbody id="costsBody"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td id="totalCosts">0</td>
+                                <td colspan="4"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="work-done" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>Отчет о проделанной работе<p>Заполняются каждую неделю ответственным</p>
+                        </h2>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn-primary" id="addWorkBtn">+ Добавить запись</button>
+                            <button class="btn-secondary export-btn" data-table="workDoneTable"
+                                data-title="Отчеты по проекту">Экспорт в Excel</button>
+                        </div>
+                    </div>
+                    <table class="data-table" id="workDoneTable">
+                        <thead>
+                            <tr>
+                                <th>Описание</th>
+                                <th>Прогресс реализации, %</th>
+                                <th>Дата и время</th>
+                                <th>Функционал</th>
+                            </tr>
+                        </thead>
+                        <tbody id="workDoneBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="visual" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>Визуализация</h2>
+                    </div>
+                    <div class="chart-container"><canvas id="progressChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2024 Система управления инвестиционными проектами</p>
+            <p>Контакты: <a href="mailto:support@company.ru">support@company.ru</a> | Версия 2.1.4</p>
+        </div>
+    </footer>
+
+    <!-- Модальные окна -->
+    <div class="modal-overlay" id="investModal">
+        <div class="modal">
+            <h2 id="investModalTitle">Добавить инвестицию</h2>
+            <div class="form-group"><label for="investFact">Факт, BYN</label><input type="number" id="investFact"
+                    step="0.01" min="0"></div>
+            <div class="form-group"><label for="investFactDate">Фактическая дата</label><input type="date"
+                    id="investFactDate"></div>
+            <div class="modal-actions"><button class="btn-secondary" id="cancelInvestModal">Отмена</button><button
+                    class="btn-primary" id="saveInvestBtn">Сохранить</button></div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="costModal">
+        <div class="modal">
+            <h2 id="costModalTitle">Добавить затраты</h2>
+            <div class="form-group"><label for="costAmount">Сумма, BYN</label><input type="number" id="costAmount"
+                    step="0.01" min="0"></div>
+            <div class="form-group"><label for="costDescription">Описание</label><textarea id="costDescription"
+                    rows="2"></textarea></div>
+            <div class="form-group"><label for="costResponsible">Ответственный</label><input type="text"
+                    id="costResponsible"></div>
+            <div class="form-group"><label for="costDate">Дата</label><input type="date" id="costDate"></div>
+            <div class="modal-actions"><button class="btn-secondary" id="cancelCostModal">Отмена</button><button
+                    class="btn-primary" id="saveCostBtn">Сохранить</button></div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="workModal">
+        <div class="modal">
+            <h2 id="workModalTitle">Добавить запись</h2>
+            <div class="form-group"><label for="workDescription">Описание</label><textarea id="workDescription"
+                    rows="2"></textarea></div>
+            <div class="form-group"><label for="workProgress">Прогресс реализации, %</label><input type="number"
+                    id="workProgress" min="0" max="100" step="1"></div>
+            <div class="modal-actions"><button class="btn-secondary" id="cancelWorkModal">Отмена</button><button
+                    class="btn-primary" id="saveWorkBtn">Сохранить</button></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/project-control-detail.js"></script>
+</body>
+
+</html>

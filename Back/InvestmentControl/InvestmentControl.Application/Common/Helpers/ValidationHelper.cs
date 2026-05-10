@@ -1,4 +1,6 @@
-﻿namespace InvestmentControl.Application.Common.Helpers;
+﻿using System.Globalization;
+
+namespace InvestmentControl.Application.Common.Helpers;
 
 public static class ValidationHelper
 {
@@ -13,5 +15,14 @@ public static class ValidationHelper
     {
         if (list == null || !list.Any())
             throw new ArgumentException($"Параметр {paramName} обязателен и должен содержать хотя бы один элемент.", paramName);
+    }
+
+    public static bool IsValidRankValue(decimal? value, string? rawValue)
+    {
+        if (!value.HasValue) return true;
+        var str = value.Value.ToString(CultureInfo.InvariantCulture);
+        if (str.Contains('e') || str.Contains('E') || str.Contains('+') || str.Contains('-') || str.Contains(',') || str.Contains('.'))
+            return false;
+        return true;
     }
 }

@@ -53,14 +53,23 @@ public class UpdateProgressReportCommandHandler : IRequestHandler<UpdateProgress
         if (status != "Активен" && status != "Завершен")
             throw new ArgumentException("Отчёты можно изменять только для активных или завершённых проектов.");
 
+        // Проверка монотонности прогресса относительно предыдущих и последующих отчётов
         var allReports = (await _progressReportRepository.GetByProjectIdAsync(report.ProjectId, cancellationToken)).ToList();
-        var maxPrevious = allReports.Where(r => r.ReportDate < report.ReportDate).Max(r => r.ProgressPercentage);
-        var minLater = allReports.Where(r => r.ReportDate > report.ReportDate).Min(r => r.ProgressPercentage);
+        var previousReports = allReports.Where(r => r.ReportDate < report.ReportDate).ToList();
+        if (previousReports.Any())
+        {
+            var maxPrevious = previousReports.Max(r => r.ProgressPercentage);
+            if (request.ProgressPercentage <= maxPrevious)
+                throw new ArgumentException($"Новый прогресс ({request.ProgressPercentage}%) должен быть больше предыдущего ({maxPrevious}%).");
+        }
 
-        if (request.ProgressPercentage <= maxPrevious)
-            throw new ArgumentException($"Новый прогресс ({request.ProgressPercentage}%) должен быть больше предыдущего ({maxPrevious}%).");
-        if (request.ProgressPercentage > minLater)
-            throw new ArgumentException($"Новый прогресс ({request.ProgressPercentage}%) не может быть больше прогресса в более поздних отчётах ({minLater}%).");
+        var laterReports = allReports.Where(r => r.ReportDate > report.ReportDate).ToList();
+        if (laterReports.Any())
+        {
+            var minLater = laterReports.Min(r => r.ProgressPercentage);
+            if (request.ProgressPercentage > minLater)
+                throw new ArgumentException($"Новый прогресс ({request.ProgressPercentage}%) не может быть больше прогресса в более поздних отчётах ({minLater}%).");
+        }
 
         report.Update(request.Description, request.ProgressPercentage);
         _progressReportRepository.Update(report);

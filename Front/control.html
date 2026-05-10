@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контроль - Управление инвестиционными проектами</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/control.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="home.html" class="logo-link">
+                <img src="images/logo.png" alt="Логотип системы" class="logo">
+                <span class="system-name">Система управления инвестиционными проектами</span>
+            </a>
+            <nav class="main-nav">
+                <a href="home.html" class="nav-link">Главная</a>
+                <a href="nsi.html" class="nav-link">НСИ</a>
+                <a href="projects.html" class="nav-link">Инвестпроекты</a>
+                <a href="analytics.html" class="nav-link">Аналитика</a>
+                <a href="control.html" class="nav-link active">Контроль</a>
+            </nav>
+            <div class="user-menu">
+                <span class="user-name">Загрузка...</span>
+                <button class="logout-btn">Выйти</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="control-container">
+            <div class="page-header"><h1>Контроль за инвестициями</h1></div>
+
+            <div class="projects-controls">
+                <div class="search-box">
+                    <input type="text" class="project-search" placeholder="Поиск по названию проекта...">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="filters">
+                    <div class="filter-group">
+                        <span>Направление</span>
+                        <div class="dropdown-checkbox" data-filter="direction">
+                            <button class="dropdown-trigger btn-secondary" type="button">Все направления</button>
+                            <div class="dropdown-menu"></div>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <span>Подразделение</span>
+                        <div class="dropdown-checkbox" data-filter="department">
+                            <button class="dropdown-trigger btn-secondary" type="button">Все подразделения</button>
+                            <div class="dropdown-menu"></div>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <span>Категория</span>
+                        <div class="dropdown-checkbox" data-filter="category">
+                            <button class="dropdown-trigger btn-secondary" type="button">Все категории</button>
+                            <div class="dropdown-menu"></div>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <span>Статус</span>
+                        <div class="dropdown-checkbox" data-filter="status">
+                            <button class="dropdown-trigger btn-secondary">Все статусы</button>
+                            <div class="dropdown-menu"></div>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <span>Дата начала инвестиций</span>
+                        <div class="range-filters">
+                            <input type="date" id="controlDateFrom">
+                            <input type="date" id="controlDateTo">
+                        </div>
+                    </div>                   
+                    <div class="filter-group">
+                        <span>Сортировка</span>
+                        <select class="filter-select" id="sortSelect">
+                            <option value="date_desc">Дата начала (новые)</option>
+                            <option value="name_asc">Название (А-Я)</option>
+                            <option value="name_desc">Название (Я-А)</option>
+                            <option value="progress_desc">Прогресс (по убыванию)</option>
+                            <option value="progress_asc">Прогресс (по возрастанию)</option>
+                            <option value="budget_desc">Бюджет (по убыванию)</option>
+                            <option value="budget_asc">Бюджет (по возрастанию)</option>
+                            <option value="invested_desc">Проинвестировано (по убыванию)</option>
+                            <option value="invested_asc">Проинвестировано (по возрастанию)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-list">
+                <table class="projects-table">
+                    <thead>
+                        <tr>
+                            <th>Название проекта</th><th>Категория</th><th>Направление</th>
+                            <th>Структурное подразделение</th><th>Необходимо (BYN)</th>
+                            <th>Проинвестировано (BYN)</th><th>Прогресс (%)</th><th>Дата начала инвестиций</th>
+                        </tr>
+                    </thead>
+                    <tbody id="control-table-body"></tbody>
+                </table>
+                <div id="controlPagination"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2024 Система управления инвестиционными проектами</p>
+            <p>Контакты: <a href="mailto:support@company.ru">support@company.ru</a> | Версия 2.1.4</p>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/control.js"></script>
+</body>
+</html>

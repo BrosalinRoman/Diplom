@@ -1,4 +1,5 @@
-﻿using InvestmentControl.Application.Common.Helpers;
+﻿using InvestmentControl.Application.Common.DTOs;
+using InvestmentControl.Application.Common.Helpers;
 using InvestmentControl.Application.Common.Interfaces;
 using InvestmentControl.Application.Control.DTOs;
 using InvestmentControl.Domain.Interfaces;
@@ -6,18 +7,22 @@ using MediatR;
 
 namespace InvestmentControl.Application.Control.Queries;
 
-public class GetControlProjectsQuery : IRequest<List<ControlProjectDto>>
+public class GetControlProjectsQuery : IRequest<PagedResponse<ControlProjectDto>>
 {
     public string? Search { get; set; }
     public List<int>? DirectionIds { get; set; }
     public List<int>? DepartmentIds { get; set; }
     public List<int>? CategoryIds { get; set; }
+    public List<int>? StatusIds { get; set; }
     public string? Sort { get; set; }
     public DateTime? DateFrom { get; set; }
     public DateTime? DateTo { get; set; }
+
+    public int Page { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
 }
 
-public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjectsQuery, List<ControlProjectDto>>
+public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjectsQuery, PagedResponse<ControlProjectDto>>
 {
     private readonly IProjectReadRepository _projectReadRepository;
     private readonly IInvestmentRepository _investmentRepository;
@@ -36,12 +41,12 @@ public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjects
         _currentUser = currentUser;
     }
 
-    public async Task<List<ControlProjectDto>> Handle(GetControlProjectsQuery request, CancellationToken cancellationToken)
+    public async Task<PagedResponse<ControlProjectDto>> Handle(GetControlProjectsQuery request, CancellationToken cancellationToken)
     {
         // Проверка обязательности списков (хотя бы один элемент)
-        //ValidationHelper.EnsureNonEmptyList(request.DirectionIds, nameof(request.DirectionIds));
-        //ValidationHelper.EnsureNonEmptyList(request.DepartmentIds, nameof(request.DepartmentIds));
-        //ValidationHelper.EnsureNonEmptyList(request.CategoryIds, nameof(request.CategoryIds));
+        ValidationHelper.EnsureNonEmptyList(request.DirectionIds, nameof(request.DirectionIds));
+        ValidationHelper.EnsureNonEmptyList(request.DepartmentIds, nameof(request.DepartmentIds));
+        ValidationHelper.EnsureNonEmptyList(request.CategoryIds, nameof(request.CategoryIds));
 
         ValidationHelper.EnsurePositiveIds(request.DirectionIds, nameof(request.DirectionIds));
         ValidationHelper.EnsurePositiveIds(request.DepartmentIds, nameof(request.DepartmentIds));
@@ -52,6 +57,23 @@ public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjects
         if (!string.IsNullOrEmpty(request.Sort) && !allowedSortValues.Contains(request.Sort))
             throw new ArgumentException($"Недопустимое значение sort. Допустимы: {string.Join(", ", allowedSortValues)}");
 
+        // Проверка, что StatusIds передан и не пуст
+        if (request.StatusIds == null || !request.StatusIds.Any())
+            throw new ArgumentException("Параметр StatusIds обязателен и должен содержать хотя бы один элемент.");
+
+        // Получаем допустимые ID статусов "Активен" и "Завершен"
+        var activeId = await _projectReadRepository.GetStatusIdByNameAsync("Активен", cancellationToken);
+        var completedId = await _projectReadRepository.GetStatusIdByNameAsync("Завершен", cancellationToken);
+        var allowedStatusIds = new List<int>();
+        if (activeId.HasValue) allowedStatusIds.Add(activeId.Value);
+        if (completedId.HasValue) allowedStatusIds.Add(completedId.Value);
+
+        foreach (var statusId in request.StatusIds)
+        {
+            if (!allowedStatusIds.Contains(statusId))
+                throw new ArgumentException($"Данный фильтр поддерживает только статусы 'Активен' (ID={activeId}) и 'Завершен' (ID={completedId}). Получен ID {statusId}.");
+        }
+
         // Проверка дат
         if (request.DateFrom.HasValue && request.DateTo.HasValue && request.DateFrom > request.DateTo)
             throw new ArgumentException("DateFrom не может быть позже DateTo.");
@@ -61,19 +83,21 @@ public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjects
             ? await _projectReadRepository.GetProjectIdsByCreatorAsync(_currentUser.UserId, cancellationToken)
             : null;
 
-        var projects = await _projectReadRepository.GetControlProjectsAsync(
+        var pagedResult = await _projectReadRepository.GetControlProjectsPagedAsync(
             request.Search,
             request.DirectionIds,
             request.DepartmentIds,
             request.CategoryIds,
+            request.StatusIds,
             projectIds,
             request.Sort,
             request.DateFrom,
             request.DateTo,
+            request.Page,
+            request.PageSize,
             cancellationToken);
 
-        // Маппим в DTO (поле Status будет заполнено в репозитории)
-        return projects.Select(p => new ControlProjectDto
+        var items = pagedResult.Items.Select(p => new ControlProjectDto
         {
             Id = p.Id,
             Name = p.Name,
@@ -86,5 +110,13 @@ public class GetControlProjectsQueryHandler : IRequestHandler<GetControlProjects
             StartDate = p.StartDate,
             Status = p.Status
         }).ToList();
+
+        return new PagedResponse<ControlProjectDto>
+        {
+            Items = items,
+            Page = pagedResult.Page,
+            PageSize = pagedResult.PageSize,
+            TotalCount = pagedResult.TotalCount
+        };
     }
 }

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект - Управление инвестиционными проектами</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/project-detail.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="home.html" class="logo-link">
+                <img src="images/logo.png" alt="Логотип системы" class="logo">
+                <span class="system-name">Система управления инвестиционными проектами</span>
+            </a>
+            <nav class="main-nav">
+                <a href="home.html" class="nav-link">Главная</a>
+                <a href="nsi.html" class="nav-link">НСИ</a>
+                <a href="projects.html" class="nav-link">Инвестпроекты</a>
+                <a href="analytics.html" class="nav-link">Аналитика</a>
+                <a href="control.html" class="nav-link">Контроль</a>
+            </nav>
+            <div class="user-menu">
+                <span class="user-name">Иванов А.В.<br/>(Администратор)</span>
+                <button class="logout-btn">Выйти</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="project-detail-container">
+            <!-- Шапка проекта -->
+            <div class="project-header">
+                <div class="project-title">
+                    <h1 id="projectTitle">Проект: <span id="projectName">Развитие IT-инфраструктуры</span></h1>
+                    <div class="project-meta">
+                        <span>Ранг: <span id="projectRank">0</span></span>
+                        <span>Статус: <span id="projectStatus">Активный</span></span>
+                    </div>
+                </div>
+                <div class="project-actions">
+                    <button class="btn-secondary" id="backToListBtn">← Назад к списку</button>
+                    <button class="btn-primary" id="saveProjectBtn" data-visible="true">Сохранить изменения</button>
+                    <button class="btn-primary" id="publishProjectBtn" style="display: none;">Опубликовать</button>
+                </div>
+            </div>
+            
+            <!-- Вкладки -->
+            <div class="project-tabs">
+                <button class="tab-button active" data-tab="teo">ТЭО</button>
+                <button class="tab-button" data-tab="card">Карточка проекта</button>
+                <button class="tab-button" data-tab="ranking">Характеристики ранжирования</button>
+                <button class="tab-button" data-tab="comments" id="commentsTabBtn">Комментарии</button>
+            </div>
+            
+            <div class="tab-content">
+                <!-- Вкладка ТЭО -->
+                <div id="teo" class="tab-pane active">
+                    <div class="teo-header">
+                        <h2>Технико-экономическое обоснование</h2>
+                        <!-- Кнопка добавления показателей удалена -->
+                    </div>
+                    
+                    <div class="teo-sections">
+                        <!-- 1. Резюме -->
+                        <div class="teo-section">
+                            <h3>Резюме</h3>
+                            <div class="form-group">
+                                <textarea id="teoSummary" rows="5" placeholder="Краткое резюме проекта..."></textarea>
+                            </div>
+                        </div>
+                        <!-- 2. Техническое обоснование -->
+                        <div class="teo-section">
+                            <h3>Техническое обоснование необходимости проекта</h3>
+                            <div class="form-group">
+                                <textarea id="teoTechnical" rows="5" placeholder="Техническое обоснование..."></textarea>
+                            </div>
+                        </div>
+                        <!-- 3. Экономическая эффективность -->
+                        <div class="teo-section">
+                            <h3>Определение экономической эффективности проекта</h3>
+                            <div class="form-group">
+                                <textarea id="teoEconomic" rows="5" placeholder="Экономическое обоснование..."></textarea>
+                            </div>
+                        </div>
+                        <!-- 4. Показатели ранжирования (таблица) -->
+                        <div class="teo-section">
+                            <h3>Показатели ранжирования</h3>
+                            <table class="indicators-table" id="rankingIndicatorsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Наименование показателя</th>
+                                        <th>Величина</th>
+                                        <th>Единица измерения</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="indicatorsBody">
+                                    <!-- Строки будут добавляться динамически в зависимости от категории -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Вкладка Карточка проекта -->
+                <div id="card" class="tab-pane">
+                    <h2>📋 Карточка проекта</h2>
+                    <div class="project-card-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardName">Название проекта</label>
+                                <input type="text" id="cardName" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="cardDirection">Направление</label>
+                                <select id="cardDirection">
+                                    <option value="IT">IT</option>
+                                    <option value="Производство">Производство</option>
+                                    <option value="Логистика">Логистика</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardGoal">Цель проекта</label>
+                                <textarea id="cardGoal" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardCost">Стоимость проекта, руб.</label>
+                                <input type="text" id="cardCost" readonly class="readonly-field" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="cardPayback">Срок окупаемости, лет</label>
+                                <input type="text" id="cardPayback" readonly class="readonly-field" value="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardStartDate">Дата начала</label>
+                                <input type="date" id="cardStartDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="cardEndDate">Дата окончания (план)</label>
+                                <input type="date" id="cardEndDate">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardManager">Менеджер проекта (Ответственный)</label>
+                                <input type="text" id="cardManager" value="Иванов А.В.">
+                            </div>
+                            <div class="form-group" id="cardStatusGroup">
+                                <label for="cardStatus">Статус</label>
+                                <select id="cardStatus">
+                                    <option value="Активный">Активный</option>
+                                    <option value="Завершен">Завершен</option>
+                                    <option value="Черновик">Черновик</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Вкладка Характеристики ранжирования -->
+                <div id="ranking" class="tab-pane">
+                    <h2>🏆 Характеристики ранжирования</h2>
+                    <p class="ranking-info">Баллы рассчитываются автоматически на основе введённых величин.</p>
+                    
+                    <div class="ranking-table-container">
+                        <table class="ranking-table">
+                            <thead>
+                                <tr>
+                                    <th>Показатель</th>
+                                    <th>Значение (из ТЭО)</th>
+                                    <th>Балл</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rankingScoresBody">
+                                <!-- будут заполнены из показателей -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="ranking-summary">
+                        <div class="total-score">
+                            <h3>Итоговый ранг</h3>
+                            <div class="score-value" id="totalRank">0</div>
+                        </div>
+                        <div class="ranking-chart">
+                            <canvas id="rankingChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вкладка Комментарии (скрыта для черновиков) -->
+                <div id="comments" class="tab-pane">
+                    <div class="comments-header">
+                        <h2>Комментарии</h2>
+                        <button class="btn-primary" id="addCommentBtn">+ Добавить комментарий</button>
+                    </div>
+                    <div class="comments-list" id="commentsList">
+                        <!-- Список комментариев -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2024 Система управления инвестиционными проектами</p>
+            <p>Контакты: <a href="mailto:support@company.ru">support@company.ru</a> | Версия 2.1.4</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для комментария -->
+    <div class="modal-overlay" id="commentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Добавить комментарий</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="commentText">Комментарий</label>
+                    <textarea id="commentText" rows="4" placeholder="Введите текст комментария..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary cancel-btn">Отмена</button>
+                <button class="btn-primary save-btn" id="saveCommentBtn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/project-detail.js"></script>
+</body>
+</html>

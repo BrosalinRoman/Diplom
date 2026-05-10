@@ -53,6 +53,20 @@ public class AddProgressReportCommandHandler : IRequestHandler<AddProgressReport
 
         // Проверка прогресса
         var existingReports = await _progressReportRepository.GetByProjectIdAsync(request.ProjectId, cancellationToken);
+
+        // Проверка на создание отчёта не чаще раза в неделю
+        var lastReport = existingReports.OrderByDescending(r => r.ReportDate).FirstOrDefault();
+        if (lastReport != null)
+        {
+            var timeSinceLastReport = DateTime.UtcNow - lastReport.ReportDate;
+            if (timeSinceLastReport.TotalDays < 7)
+            {
+                var remaining = TimeSpan.FromDays(7) - timeSinceLastReport;
+                var message = $"Отчеты можно добавлять только раз в неделю. Следующий отчёт вы сможете внести через {remaining.Days} д. {remaining.Hours} ч. {remaining.Minutes} мин.";
+                throw new ArgumentException(message);
+            }
+        }
+
         var maxProgress = existingReports.Any() ? existingReports.Max(r => r.ProgressPercentage) : 0;
         if (request.ProgressPercentage <= maxProgress)
             throw new ArgumentException($"Новый прогресс ({request.ProgressPercentage}%) должен быть больше предыдущего ({maxProgress}%).");

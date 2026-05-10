@@ -3,6 +3,7 @@ using InvestmentControl.API.DTOs.Responses;
 using InvestmentControl.Application.Analytics.Commands;
 using InvestmentControl.Application.Analytics.DTOs;
 using InvestmentControl.Application.Analytics.Queries;
+using InvestmentControl.Application.Common.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("projects")]
-    public async Task<ActionResult<AnalyticsResponse>> GetProjects([FromQuery] AnalyticsRequest request)
+    public async Task<ActionResult<PagedResponse<ProjectAnalyticsDto>>> GetProjects([FromQuery] AnalyticsRequest request)
     {
         var query = new GetProjectsAnalyticsQuery
         {
@@ -34,10 +35,11 @@ public class AnalyticsController : ControllerBase
             RankMax = request.RankMax,
             ExcludedProjectIds = request.ProjectIds,
             SelectedFields = request.SelectedFields,
+            Page = request.Page,
+            PageSize = request.PageSize
         };
-
-        var projects = await _mediator.Send(query);
-        return Ok(new AnalyticsResponse { Projects = projects });
+        var result = await _mediator.Send(query);
+        return Ok(result);
     }
 
     [HttpGet("templates")]

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НСИ - Управление инвестиционными проектами</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/nsi.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="home.html" class="logo-link">
+                <img src="images/logo.png" alt="Логотип системы" class="logo">
+                <span class="system-name">Система управления инвестиционными проектами</span>
+            </a>
+            <nav class="main-nav">
+                <a href="home.html" class="nav-link">Главная</a>
+                <a href="nsi.html" class="nav-link active">НСИ</a>
+                <a href="projects.html" class="nav-link">Инвестпроекты</a>
+                <a href="analytics.html" class="nav-link">Аналитика</a>
+                <a href="control.html" class="nav-link">Контроль</a>
+            </nav>
+            <div class="user-menu">
+                <span class="user-name">Иванов А.В.<br />(Администратор)</span>
+                <button class="logout-btn">Выйти</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="nsi-container">
+            <div class="page-header">
+                <h1>Нормативно-Справочная Информация</h1>
+            </div>
+
+            <!-- Вкладки -->
+            <div class="nsi-tabs">
+                <button class="tab-button active" data-tab="formuls">Формулы</button>
+                <button class="tab-button" data-tab="directions">Направления</button>
+                <button class="tab-button" data-tab="categories">Категории</button>
+                <button class="tab-button" data-tab="statuses">Статусы</button>
+                <button class="tab-button" data-tab="ranges">Диапазоны характеристик</button>
+                <button class="tab-button" data-tab="divisions">Подразделения</button>
+                <button class="tab-button" data-tab="users">Пользователи</button>
+            </div>
+
+            <!-- Вкладка Формулы -->
+            <div id="formuls" class="tab-pane active">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2>Формулы</h2>
+                        <input type="text" class="search-input" data-tab="formuls" placeholder="Поиск по названию...">
+                        <button class="btn-primary add-item-btn" data-type="formula">+ Добавить формулу</button>
+                    </div>
+                    <div class="items-list" id="formuls-list">
+                        <div class="list-item" data-id="1">
+                            <div class="item-header">
+                                <h4>NPV (Чистая приведенная стоимость)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="formula-expression">NPV = ∑(Ct / (1 + r)^t) - C₀</div>
+                                <div class="item-description">
+                                    <p><strong>Описание:</strong> Показывает разницу между текущей стоимостью денежных поступлений и текущей стоимостью денежных выплат.</p>
+                                    <p><strong>Где:</strong> Ct - денежный поток в период t, r - ставка дисконтирования, C₀ - первоначальные инвестиции</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="2">
+                            <div class="item-header">
+                                <h4>IRR (Внутренняя норма доходности)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="formula-expression">NPV = 0 = ∑(Ct / (1 + IRR)^t) - C₀</div>
+                                <div class="item-description">
+                                    <p><strong>Описание:</strong> Ставка дисконтирования, при которой чистая приведенная стоимость равна нулю.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="3">
+                            <div class="item-header">
+                                <h4>Расчет себестоимости</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="formula-expression">Себестоимость = Прямые затраты + Косвенные затраты</div>
+                                <div class="item-description">
+                                    <p><strong>Описание:</strong> Расчет полной себестоимости продукции.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Направления -->
+            <div id="directions" class="tab-pane">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2>Направления</h2>
+                        <input type="text" class="search-input" data-tab="directions" placeholder="Поиск по названию...">
+                        <button class="btn-primary add-item-btn" data-type="direction">+ Добавить направление</button>
+                    </div>
+                    <div class="items-list" id="directions-list">
+                        <div class="list-item" data-id="1">
+                            <div class="item-header">
+                                <h4>Капитальное строительство (КС)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Строительство новых зданий, сооружений, объектов инфраструктуры.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="2">
+                            <div class="item-header">
+                                <h4>Оборудование, не входящее в смету (ОБ)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Приобретение оборудования, которое не включается в смету строительства.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="3">
+                            <div class="item-header">
+                                <h4>Приобретение ТС, ПЖдС (ТС/ПЖдС)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Приобретение транспортных средств и подвижного железнодорожного состава, а также их техническое диагностирование с целью продления срока службы.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="4">
+                            <div class="item-header">
+                                <h4>Модернизация машин, оборудования, ТС (МОД)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Дооборудование и модернизация существующих машин, оборудования и транспортных средств.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="5">
+                            <div class="item-header">
+                                <h4>Проектно-изыскательные работы (ПИР)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Разработка проектной документации, проведение инженерных изысканий.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="6">
+                            <div class="item-header">
+                                <h4>Объекты натуральной собственности (ОНС)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Приобретение или создание объектов природных ресурсов (земля, леса и т.п.).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Категории -->
+            <div id="categories" class="tab-pane">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2>Категории</h2>
+                        <input type="text" class="search-input" data-tab="categories" placeholder="Поиск по названию...">
+                        <button class="btn-primary add-item-btn" data-type="category">+ Добавить категорию</button>
+                    </div>
+                    <div class="items-list" id="categories-list">
+                        <div class="list-item" data-id="1">
+                            <div class="item-header">
+                                <h4>Приносящие прибыль</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Проекты, инвестиции в которые в будущем принесут прибыль.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="2">
+                            <div class="item-header">
+                                <h4>Снижающие затраты</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Проекты, инвестирование в которые в будущем снизит затраты на что-либо.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="3">
+                            <div class="item-header">
+                                <h4>Ориентированные на социальный эффект</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Проекты, которые не приносят прибыль, но положительно влияют на отношение сотрудников и клиентов.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Статусы (с цветами) -->
+            <div id="statuses" class="tab-pane">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2>Статусы</h2>
+                        <input type="text" class="search-input" data-tab="statuses" placeholder="Поиск по названию...">
+                        <button class="btn-primary add-item-btn" data-type="status">+ Добавить статус</button>
+                    </div>
+                    <div class="items-list" id="statuses-list">
+                        <div class="list-item status-item status-chernovik" data-id="1">
+                            <div class="item-header">
+                                <h4>Черновик</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Начальный этап, проект в разработке.</p>
+                            </div>
+                        </div>
+                        <div class="list-item status-item status-podan" data-id="2">
+                            <div class="item-header">
+                                <h4>Подан</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Заявка подана, ожидает рассмотрения.</p>
+                            </div>
+                        </div>
+                        <div class="list-item status-item status-na-rassmotrenii" data-id="3">
+                            <div class="item-header">
+                                <h4>На рассмотрении</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Заявка находится на рассмотрении.</p>
+                            </div>
+                        </div>
+                        <div class="list-item status-item status-odobren" data-id="4">
+                            <div class="item-header">
+                                <h4>Одобрен</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Проект одобрен к реализации.</p>
+                            </div>
+                        </div>
+                        <div class="list-item status-item status-na-dorabotke" data-id="5">
+                            <div class="item-header">
+                                <h4>На доработке</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Требуется доработка заявки.</p>
+                            </div>
+                        </div>
+                        <div class="list-item status-item status-otklonen" data-id="6">
+                            <div class="item-header">
+                                <h4>Отклонен</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Заявка отклонена.</p>
+                            </div>
+                        </div>
+                        <div class="list-item status-item status-aktiven" data-id="7">
+                            <div class="item-header">
+                                <h4>Активен</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Проект в активной стадии.</p>
+                            </div>
+                        </div>
+                        <div class="list-item status-item status-zavershen" data-id="8">
+                            <div class="item-header">
+                                <h4>Завершен</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Проект успешно завершён.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Диапазоны характеристик -->
+            <div id="ranges" class="tab-pane">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2>Диапазоны характеристик</h2>
+                        <input type="text" class="search-input" data-tab="ranges" placeholder="Поиск по названию...">
+                        <button class="btn-primary add-item-btn" data-type="range">+ Добавить диапазон</button>
+                    </div>
+                    <div class="items-list" id="ranges-list">
+                        <div class="list-item" data-id="1">
+                            <div class="item-header">
+                                <h4>Бюджет проекта (тыс. руб.)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <table class="range-table">
+                                    <thead>
+                                        <tr><th>Диапазон</th><th>Балл</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>0 - 1000</td><td>1</td></tr>
+                                        <tr><td>1001 - 5000</td><td>2</td></tr>
+                                        <tr><td>5001 - 10000</td><td>3</td></tr>
+                                        <tr><td>> 10000</td><td>4</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="2">
+                            <div class="item-header">
+                                <h4>Срок окупаемости (лет)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <table class="range-table">
+                                    <thead>
+                                        <tr><th>Диапазон</th><th>Балл</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>0 - 2</td><td>3</td></tr>
+                                        <tr><td>2.1 - 4</td><td>2</td></tr>
+                                        <tr><td>> 4</td><td>1</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="3">
+                            <div class="item-header">
+                                <h4>Рентабельность (%)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <table class="range-table">
+                                    <thead>
+                                        <tr><th>Диапазон</th><th>Балл</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>0 - 5</td><td>1</td></tr>
+                                        <tr><td>6 - 15</td><td>2</td></tr>
+                                        <tr><td>> 15</td><td>3</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="4">
+                            <div class="item-header">
+                                <h4>Риск проекта (уровень)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <table class="range-table">
+                                    <thead>
+                                        <tr><th>Диапазон</th><th>Балл</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Низкий</td><td>3</td></tr>
+                                        <tr><td>Средний</td><td>2</td></tr>
+                                        <tr><td>Высокий</td><td>1</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Подразделения (НОДы) -->
+            <div id="divisions" class="tab-pane">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2>Подразделения (НОДы)</h2>
+                        <input type="text" class="search-input" data-tab="divisions" placeholder="Поиск по названию...">
+                        <button class="btn-primary add-item-btn" data-type="division">+ Добавить подразделение</button>
+                    </div>
+                    <div class="items-list" id="divisions-list">
+                        <div class="list-item" data-id="1">
+                            <div class="item-header">
+                                <h4>НОД-1 (Минское отделение)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Минское отделение Белорусской железной дороги.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="2">
+                            <div class="item-header">
+                                <h4>НОД-2 (Барановичское отделение)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Барановичское отделение Белорусской железной дороги.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="3">
+                            <div class="item-header">
+                                <h4>НОД-3 (Брестское отделение)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Брестское отделение Белорусской железной дороги.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="4">
+                            <div class="item-header">
+                                <h4>НОД-4 (Гомельское отделение)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Гомельское отделение Белорусской железной дороги.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="5">
+                            <div class="item-header">
+                                <h4>НОД-5 (Могилёвское отделение)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Могилёвское отделение Белорусской железной дороги.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="6">
+                            <div class="item-header">
+                                <h4>НОД-6 (Витебское отделение)</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <p><strong>Описание:</strong> Витебское отделение Белорусской железной дороги.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Пользователи -->
+            <div id="users" class="tab-pane">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2>Пользователи</h2>
+                        <input type="text" class="search-input" data-tab="users" placeholder="Поиск по ФИО...">
+                        <button class="btn-primary add-item-btn" data-type="user">+ Добавить пользователя</button>
+                    </div>
+                    <div class="items-list" id="users-list">
+                        <div class="list-item" data-id="1">
+                            <div class="item-header">
+                                <h4>Иванов Иван Иванович</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                    <button class="btn-lock-item" title="Заблокировать">🔒</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="user-fields">
+                                    <div class="field"><span class="field-label">Логин:</span> ivanov</div>
+                                    <div class="field"><span class="field-label">Email:</span> ivanov@rail.by</div>
+                                    <div class="field"><span class="field-label">Подразделение:</span> НОД-1 (Минское отделение)</div>
+                                    <div class="field"><span class="field-label">Роль:</span> Администратор</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="2">
+                            <div class="item-header">
+                                <h4>Петров Пётр Петрович</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                    <button class="btn-lock-item" title="Заблокировать">🔒</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="user-fields">
+                                    <div class="field"><span class="field-label">Логин:</span> petrov</div>
+                                    <div class="field"><span class="field-label">Email:</span> petrov@rail.by</div>
+                                    <div class="field"><span class="field-label">Подразделение:</span> НОД-2 (Барановичское отделение)</div>
+                                    <div class="field"><span class="field-label">Роль:</span> Заявитель</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item" data-id="3">
+                            <div class="item-header">
+                                <h4>Сидоров Сидор Сидорович</h4>
+                                <div class="item-actions">
+                                    <button class="btn-edit-item" title="Редактировать">✎</button>
+                                    <button class="btn-delete-item" title="Удалить">🗑</button>
+                                    <button class="btn-lock-item" title="Заблокировать">🔒</button>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="user-fields">
+                                    <div class="field"><span class="field-label">Логин:</span> sidorov</div>
+                                    <div class="field"><span class="field-label">Email:</span> sidorov@rail.by</div>
+                                    <div class="field"><span class="field-label">Подразделение:</span> НОД-3 (Брестское отделение)</div>
+                                    <div class="field"><span class="field-label">Роль:</span> Инвестор</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2024 Система управления инвестиционными проектами</p>
+            <p>Контакты: <a href="mailto:support@company.ru">support@company.ru</a> | Версия 2.1.4</p>
+        </div>
+    </footer>
+
+    <script src="js/nsi.js"></script>
+</body>
+
+</html>

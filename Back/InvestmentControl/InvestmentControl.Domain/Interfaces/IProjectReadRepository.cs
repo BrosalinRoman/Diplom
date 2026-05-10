@@ -1,4 +1,5 @@
-﻿using InvestmentControl.Domain.ReadModels;
+﻿using InvestmentControl.Domain.Common;
+using InvestmentControl.Domain.ReadModels;
 
 namespace InvestmentControl.Domain.Interfaces;
 
@@ -31,6 +32,7 @@ public interface IProjectReadRepository
         List<int>? directionIds,
         List<int>? departmentIds,
         List<int>? categoryIds,
+        List<int>? statusIds,
         List<int>? projectIds,
         string? sort,
         DateTime? dateFrom,
@@ -43,7 +45,37 @@ public interface IProjectReadRepository
     Task<int?> GetCreatorUserIdAsync(int projectId, CancellationToken cancellationToken);
     Task<DateTime?> GetPublishedAtAsync(int projectId, CancellationToken cancellationToken);
     Task<decimal?> GetBudgetAsync(int projectId, CancellationToken cancellationToken);
+    Task<ProjectReadModel?> GetProjectByIdAsync(int projectId, CancellationToken cancellationToken);
     Task<int?> GetStatusIdByNameAsync(string name, CancellationToken cancellationToken);
 
     Task<List<int>> GetAllStatusIdsAsync(CancellationToken cancellationToken);
+
+    // метод для пагинированной фильтрации проектов (аналитика)
+    Task<PagedResult<ProjectReadModel>> GetFilteredProjectsPagedAsync(
+        int categoryId,
+        List<int>? directionIds,
+        List<int>? departmentIds,
+        List<int>? statusIds,
+        decimal? rankMin,
+        decimal? rankMax,
+        List<int>? allowedProjectIds,
+        List<int>? excludedProjectIds,
+        int page,
+        int pageSize,
+        CancellationToken cancellationToken);
+
+    // метод для пагинированного получения проектов для контроля
+    Task<PagedResult<ControlProjectReadModel>> GetControlProjectsPagedAsync(
+        string? search,
+        List<int>? directionIds,
+        List<int>? departmentIds,
+        List<int>? categoryIds,
+        List<int>? statusIds,
+        List<int>? projectIds,
+        string? sort,
+        DateTime? dateFrom,
+        DateTime? dateTo,
+        int page,
+        int pageSize,
+        CancellationToken cancellationToken);
 }
